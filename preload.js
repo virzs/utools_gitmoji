@@ -9,7 +9,7 @@ window.exports = {
         callbackSetList(
           data.map((i) => ({
             title: `${i.emoji} Shortcode: ${i.code}`,
-            description: i.description,
+            description: `${i.description_zh} (${i.description_en})`,
             code: i.code,
           }))
         );
@@ -21,7 +21,7 @@ window.exports = {
           data
             .map((i) => ({
               title: `${i.emoji} Shortcode: ${i.code}`,
-              description: i.description,
+              description: `${i.description_zh} (${i.description_en})`,
               code: i.code,
             }))
             .filter((i) => {
@@ -35,7 +35,7 @@ window.exports = {
           data
             .map((i) => ({
               title: `${i.emoji} Shortcode: ${i.code}`,
-              description: i.description,
+              description: `${i.description_zh} (${i.description_en})`,
               code: i.code,
             }))
             .filter((i) => {
