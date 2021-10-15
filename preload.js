@@ -1,4 +1,5 @@
 const data = require("./data.json");
+const PinyinMatch = require("pinyin-match");
 
 window.exports = {
   gitmoji: {
@@ -6,44 +7,31 @@ window.exports = {
     args: {
       enter: (action, callbackSetList) => {
         // 显示 gitmoji 列表
-        callbackSetList(
-          data.map((i) => ({
-            title: `${i.emoji} Shortcode: ${i.code}`,
-            description: `${i.description_zh} (${i.description_en})`,
-            code: i.code,
-          }))
-        );
+        const list = data.map((i) => ({
+          title: `${i.emoji} Shortcode: ${i.code}`,
+          description: `${i.description_zh} (${i.description_en})`,
+          code: i.code,
+        }));
+        callbackSetList(list);
       },
       // 子输入框内容变化时被调用 可选 (未设置则无搜索)
       search: (action, searchWord, callbackSetList) => {
-        console.log(
-          searchWord,
-          data
-            .map((i) => ({
-              title: `${i.emoji} Shortcode: ${i.code}`,
-              description: `${i.description_zh} (${i.description_en})`,
-              code: i.code,
-            }))
-            .filter((i) => {
-              const findDesc = i.description.indexOf(searchWord) !== -1;
-              const findName = i.code.indexOf(searchWord) !== -1;
-
-              return findName || findDesc;
-            })
-        );
+        const list = data.map((i) => ({
+          title: `${i.emoji} Shortcode: ${i.code}`,
+          description: `${i.description_zh} (${i.description_en})`,
+          code: i.code,
+        }));
         callbackSetList(
-          data
-            .map((i) => ({
-              title: `${i.emoji} Shortcode: ${i.code}`,
-              description: `${i.description_zh} (${i.description_en})`,
-              code: i.code,
-            }))
-            .filter((i) => {
-              const findDesc = i.description.indexOf(searchWord) !== -1;
-              const findName = i.code.indexOf(searchWord) !== -1;
+          searchWord
+            ? list.filter((i) => {
+                const lowSW = searchWord.toLocaleLowerCase();
+                const pinyinDesc = PinyinMatch.match(i.description, searchWord);
+                const findDesc = i.description.toLocaleLowerCase().indexOf(lowSW) !== -1;
+                const findName = i.code.toLocaleLowerCase().indexOf(lowSW) !== -1;
 
-              return findName || findDesc;
-            })
+                return findName || findDesc || pinyinDesc;
+              })
+            : list
         );
       },
       // 用户选择列表中某个条目时被调用
