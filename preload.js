@@ -1,5 +1,17 @@
+/*
+ * @Author: Vir
+ * @Date: 2021-10-15 20:54:29
+ * @Last Modified by: Vir
+ * @Last Modified time: 2021-10-16 00:11:33
+ */
 const data = require("./data.json");
 const PinyinMatch = require("pinyin-match");
+
+const emojiList = data.map((i) => ({
+  title: `${i.emoji} Shortcode: ${i.code}`,
+  description: `${i.description_zh} (${i.description_en})`,
+  code: i.code,
+}));
 
 window.exports = {
   gitmoji: {
@@ -7,23 +19,13 @@ window.exports = {
     args: {
       enter: (action, callbackSetList) => {
         // 显示 gitmoji 列表
-        const list = data.map((i) => ({
-          title: `${i.emoji} Shortcode: ${i.code}`,
-          description: `${i.description_zh} (${i.description_en})`,
-          code: i.code,
-        }));
-        callbackSetList(list);
+        callbackSetList(emojiList);
       },
       // 子输入框内容变化时被调用 可选 (未设置则无搜索)
       search: (action, searchWord, callbackSetList) => {
-        const list = data.map((i) => ({
-          title: `${i.emoji} Shortcode: ${i.code}`,
-          description: `${i.description_zh} (${i.description_en})`,
-          code: i.code,
-        }));
         callbackSetList(
           searchWord
-            ? list.filter((i) => {
+            ? emojiList.filter((i) => {
                 const lowSW = searchWord.toLocaleLowerCase();
                 const pinyinDesc = PinyinMatch.match(i.description, searchWord);
                 const findDesc = i.description.toLocaleLowerCase().indexOf(lowSW) !== -1;
@@ -31,7 +33,7 @@ window.exports = {
 
                 return findName || findDesc || pinyinDesc;
               })
-            : list
+            : emojiList
         );
       },
       // 用户选择列表中某个条目时被调用
