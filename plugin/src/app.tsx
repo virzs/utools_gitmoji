@@ -189,7 +189,7 @@ export function App() {
   useEffect(() => {
     addEventListener("keydown", EventListener);
     return () => removeEventListener("keydown", EventListener);
-  }, [activeIndex]);
+  }, [select, activeIndex, filterData]);
 
   return (
     <List eref={listRef}>
