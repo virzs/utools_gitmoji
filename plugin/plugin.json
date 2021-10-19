@@ -1,0 +1,12 @@
+{
+  "main": "http://localhost:8101/index.html",
+  "logo": "logo.png",
+  "features": [
+    {
+      "code": "gitmoji",
+      "explain": "一个用于提交信息的表情符号指南",
+      "icon": "logo.png",
+      "cmds": ["git", "gitmoji", "commit"]
+    }
+  ]
+}

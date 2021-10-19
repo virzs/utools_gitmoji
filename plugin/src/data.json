@@ -1,0 +1,596 @@
+[
+  {
+    "emoji": "🎨",
+    "entity": "&#x1f3a8;",
+    "code": ":art:",
+    "description_zh": "改善结构 / 代码格式.",
+    "description_en": "Improve structure / format of the code.",
+    "name": "art",
+    "semver": null
+  },
+  {
+    "emoji": "⚡️",
+    "entity": "&#x26a1;",
+    "code": ":zap:",
+    "description_zh": "提高性能.",
+    "description_en": "Improve performance.",
+    "name": "zap",
+    "semver": "patch"
+  },
+  {
+    "emoji": "🔥",
+    "entity": "&#x1f525;",
+    "code": ":fire:",
+    "description_zh": "删除代码或文件.",
+    "description_en": "Remove code or files.",
+    "name": "fire",
+    "semver": null
+  },
+  {
+    "emoji": "🐛",
+    "entity": "&#x1f41b;",
+    "code": ":bug:",
+    "description_zh": "修正一个错误.",
+    "description_en": "Fix a bug.",
+    "name": "bug",
+    "semver": "patch"
+  },
+  {
+    "emoji": "🚑️",
+    "entity": "&#128657;",
+    "code": ":ambulance:",
+    "description_zh": "临界热修复补丁.",
+    "description_en": "Critical hotfix.",
+    "name": "ambulance",
+    "semver": "patch"
+  },
+  {
+    "emoji": "✨",
+    "entity": "&#x2728;",
+    "code": ":sparkles:",
+    "description_zh": "新功能介绍.",
+    "description_en": "Introduce new features.",
+    "name": "sparkles",
+    "semver": "minor"
+  },
+  {
+    "emoji": "📝",
+    "entity": "&#x1f4dd;",
+    "code": ":memo:",
+    "description_zh": "添加或更新文档.",
+    "description_en": "Add or update documentation.",
+    "name": "memo",
+    "semver": null
+  },
+  {
+    "emoji": "🚀",
+    "entity": "&#x1f680;",
+    "code": ":rocket:",
+    "description_zh": "部署的东西.",
+    "description_en": "Deploy stuff.",
+    "name": "rocket",
+    "semver": null
+  },
+  {
+    "emoji": "💄",
+    "entity": "&#ff99cc;",
+    "code": ":lipstick:",
+    "description_zh": "添加或更新UI和样式文件.",
+    "description_en": "Add or update the UI and style files.",
+    "name": "lipstick",
+    "semver": "patch"
+  },
+  {
+    "emoji": "🎉",
+    "entity": "&#127881;",
+    "code": ":tada:",
+    "description_zh": "开始新项目.",
+    "description_en": "Begin a project.",
+    "name": "tada",
+    "semver": null
+  },
+  {
+    "emoji": "✅",
+    "entity": "&#x2705;",
+    "code": ":white_check_mark:",
+    "description_zh": "添加、更新或通过测试.",
+    "description_en": "Add, update, or pass tests.",
+    "name": "white-check-mark",
+    "semver": null
+  },
+  {
+    "emoji": "🔒️",
+    "entity": "&#x1f512;",
+    "code": ":lock:",
+    "description_zh": "解决安全问题.",
+    "description_en": "Fix security issues.",
+    "name": "lock",
+    "semver": "patch"
+  },
+  {
+    "emoji": "🔖",
+    "entity": "&#x1f516;",
+    "code": ":bookmark:",
+    "description_zh": "发布 / 版本标签.",
+    "description_en": "Release / Version tags.",
+    "name": "bookmark",
+    "semver": null
+  },
+  {
+    "emoji": "🚨",
+    "entity": "&#x1f6a8;",
+    "code": ":rotating_light:",
+    "description_zh": "修复编译器 / linter 警告.",
+    "description_en": "Fix compiler / linter warnings.",
+    "name": "rotating-light",
+    "semver": null
+  },
+  {
+    "emoji": "🚧",
+    "entity": "&#x1f6a7;",
+    "code": ":construction:",
+    "description_zh": "进行中的工作.",
+    "description_en": "Work in progress.",
+    "name": "construction",
+    "semver": null
+  },
+  {
+    "emoji": "💚",
+    "entity": "&#x1f49a;",
+    "code": ":green_heart:",
+    "description_zh": "修复 CI 构建.",
+    "description_en": "Fix CI Build.",
+    "name": "green-heart",
+    "semver": null
+  },
+  {
+    "emoji": "⬇️",
+    "entity": "⬇️",
+    "code": ":arrow_down:",
+    "description_zh": "降级的依赖性.",
+    "description_en": "Downgrade dependencies.",
+    "name": "arrow-down",
+    "semver": "patch"
+  },
+  {
+    "emoji": "⬆️",
+    "entity": "⬆️",
+    "code": ":arrow_up:",
+    "description_zh": "升级的依赖关系.",
+    "description_en": "Upgrade dependencies.",
+    "name": "arrow-up",
+    "semver": "patch"
+  },
+  {
+    "emoji": "📌",
+    "entity": "&#x1F4CC;",
+    "code": ":pushpin:",
+    "description_zh": "固定到特定版本的依赖项.",
+    "description_en": "Pin dependencies to specific versions.",
+    "name": "pushpin",
+    "semver": "patch"
+  },
+  {
+    "emoji": "👷",
+    "entity": "&#x1f477;",
+    "code": ":construction_worker:",
+    "description_zh": "添加或更新 CI 构建系统.",
+    "description_en": "Add or update CI build system.",
+    "name": "construction-worker",
+    "semver": null
+  },
+  {
+    "emoji": "📈",
+    "entity": "&#x1F4C8;",
+    "code": ":chart_with_upwards_trend:",
+    "description_zh": "添加或更新分析或跟踪代码.",
+    "description_en": "Add or update analytics or track code.",
+    "name": "chart-with-upwards-trend",
+    "semver": "patch"
+  },
+  {
+    "emoji": "♻️",
+    "entity": "&#x2672;",
+    "code": ":recycle:",
+    "description_zh": "重构代码.",
+    "description_en": "Refactor code.",
+    "name": "recycle",
+    "semver": null
+  },
+  {
+    "emoji": "➕",
+    "entity": "&#10133;",
+    "code": ":heavy_plus_sign:",
+    "description_zh": "添加一个依赖项.",
+    "description_en": "Add a dependency.",
+    "name": "heavy-plus-sign",
+    "semver": "patch"
+  },
+  {
+    "emoji": "➖",
+    "entity": "&#10134;",
+    "code": ":heavy_minus_sign:",
+    "description_zh": "删除一个依赖.",
+    "description_en": "Remove a dependency.",
+    "name": "heavy-minus-sign",
+    "semver": "patch"
+  },
+  {
+    "emoji": "🔧",
+    "entity": "&#x1f527;",
+    "code": ":wrench:",
+    "description_zh": "添加或更新配置文件.",
+    "description_en": "Add or update configuration files.",
+    "name": "wrench",
+    "semver": "patch"
+  },
+  {
+    "emoji": "🔨",
+    "entity": "&#128296;",
+    "code": ":hammer:",
+    "description_zh": "添加或更新开发脚本.",
+    "description_en": "Add or update development scripts.",
+    "name": "hammer",
+    "semver": null
+  },
+  {
+    "emoji": "🌐",
+    "entity": "&#127760;",
+    "code": ":globe_with_meridians:",
+    "description_zh": "Internationalization and localization.",
+    "description_en": "Internationalization and localization.",
+    "name": "globe-with-meridians",
+    "semver": "patch"
+  },
+  {
+    "emoji": "✏️",
+    "entity": "&#59161;",
+    "code": ":pencil2:",
+    "description_zh": "修复拼写错误.",
+    "description_en": "Fix typos.",
+    "name": "pencil2",
+    "semver": "patch"
+  },
+  {
+    "emoji": "💩",
+    "entity": "&#58613;",
+    "code": ":poop:",
+    "description_zh": "编写需要改进的糟糕代码.",
+    "description_en": "Write bad code that needs to be improved.",
+    "name": "poop",
+    "semver": null
+  },
+  {
+    "emoji": "⏪️",
+    "entity": "&#9194;",
+    "code": ":rewind:",
+    "description_zh": "恢复的变化.",
+    "description_en": "Revert changes.",
+    "name": "rewind",
+    "semver": "patch"
+  },
+  {
+    "emoji": "🔀",
+    "entity": "&#128256;",
+    "code": ":twisted_rightwards_arrows:",
+    "description_zh": "合并分支.",
+    "description_en": "Merge branches.",
+    "name": "twisted-rightwards-arrows",
+    "semver": null
+  },
+  {
+    "emoji": "📦️",
+    "entity": "&#1F4E6;",
+    "code": ":package:",
+    "description_zh": "添加或更新已编译的文件或包.",
+    "description_en": "Add or update compiled files or packages.",
+    "name": "package",
+    "semver": "patch"
+  },
+  {
+    "emoji": "👽️",
+    "entity": "&#1F47D;",
+    "code": ":alien:",
+    "description_zh": "由于外部API更改而更新代码.",
+    "description_en": "Update code due to external API changes.",
+    "name": "alien",
+    "semver": "patch"
+  },
+  {
+    "emoji": "🚚",
+    "entity": "&#1F69A;",
+    "code": ":truck:",
+    "description_zh": "移动或重命名资源(例如:文件、路径、路由).",
+    "description_en": "Move or rename resources (e.g.: files, paths, routes).",
+    "name": "truck",
+    "semver": null
+  },
+  {
+    "emoji": "📄",
+    "entity": "&#1F4C4;",
+    "code": ":page_facing_up:",
+    "description_zh": "添加或更新许可证.",
+    "description_en": "Add or update license.",
+    "name": "page-facing-up",
+    "semver": null
+  },
+  {
+    "emoji": "💥",
+    "entity": "&#x1f4a5;",
+    "code": ":boom:",
+    "description_zh": "介绍突发变化.",
+    "description_en": "Introduce breaking changes.",
+    "name": "boom",
+    "semver": "major"
+  },
+  {
+    "emoji": "🍱",
+    "entity": "&#1F371",
+    "code": ":bento:",
+    "description_zh": "添加或更新资产.",
+    "description_en": "Add or update assets.",
+    "name": "bento",
+    "semver": "patch"
+  },
+  {
+    "emoji": "♿️",
+    "entity": "&#9855;",
+    "code": ":wheelchair:",
+    "description_zh": "提高可访问性.",
+    "description_en": "Improve accessibility.",
+    "name": "wheelchair",
+    "semver": "patch"
+  },
+  {
+    "emoji": "💡",
+    "entity": "&#128161;",
+    "code": ":bulb:",
+    "description_zh": "在源代码中添加或更新注释.",
+    "description_en": "Add or update comments in source code.",
+    "name": "bulb",
+    "semver": null
+  },
+  {
+    "emoji": "🍻",
+    "entity": "&#x1f37b;",
+    "code": ":beers:",
+    "description_zh": "编写代码醉醺醺地.",
+    "description_en": "Write code drunkenly.",
+    "name": "beers",
+    "semver": null
+  },
+  {
+    "emoji": "💬",
+    "entity": "&#128172;",
+    "code": ":speech_balloon:",
+    "description_zh": "添加或更新文本和文字.",
+    "description_en": "Add or update text and literals.",
+    "name": "speech-balloon",
+    "semver": "patch"
+  },
+  {
+    "emoji": "🗃️",
+    "entity": "&#128451;",
+    "code": ":card_file_box:",
+    "description_zh": "执行与数据库相关的更改.",
+    "description_en": "Perform database related changes.",
+    "name": "card-file-box",
+    "semver": "patch"
+  },
+  {
+    "emoji": "🔊",
+    "entity": "&#128266;",
+    "code": ":loud_sound:",
+    "description_zh": "添加或更新日志.",
+    "description_en": "Add or update logs.",
+    "name": "loud-sound",
+    "semver": null
+  },
+  {
+    "emoji": "🔇",
+    "entity": "&#128263;",
+    "code": ":mute:",
+    "description_zh": "删除日志.",
+    "description_en": "Remove logs.",
+    "name": "mute",
+    "semver": null
+  },
+  {
+    "emoji": "👥",
+    "entity": "&#128101;",
+    "code": ":busts_in_silhouette:",
+    "description_zh": "添加或更新贡献者.",
+    "description_en": "Add or update contributor(s).",
+    "name": "busts-in-silhouette",
+    "semver": null
+  },
+  {
+    "emoji": "🚸",
+    "entity": "&#128696;",
+    "code": ":children_crossing:",
+    "description_zh": "改善用户体验 / 可用性.",
+    "description_en": "Improve user experience / usability.",
+    "name": "children-crossing",
+    "semver": "patch"
+  },
+  {
+    "emoji": "🏗️",
+    "entity": "&#1f3d7;",
+    "code": ":building_construction:",
+    "description_zh": "进行架构更改.",
+    "description_en": "Make architectural changes.",
+    "name": "building-construction",
+    "semver": null
+  },
+  {
+    "emoji": "📱",
+    "entity": "&#128241;",
+    "code": ":iphone:",
+    "description_zh": "响应式设计.",
+    "description_en": "Work on responsive design.",
+    "name": "iphone",
+    "semver": "patch"
+  },
+  {
+    "emoji": "🤡",
+    "entity": "&#129313;",
+    "code": ":clown_face:",
+    "description_zh": "假的东西.",
+    "description_en": "Mock things.",
+    "name": "clown-face",
+    "semver": null
+  },
+  {
+    "emoji": "🥚",
+    "entity": "&#129370;",
+    "code": ":egg:",
+    "description_zh": "添加或更新一个复活节彩蛋.",
+    "description_en": "Add or update an easter egg.",
+    "name": "egg",
+    "semver": "patch"
+  },
+  {
+    "emoji": "🙈",
+    "entity": "&#8bdfe7;",
+    "code": ":see_no_evil:",
+    "description_zh": "添加或更新.gitignore文件.",
+    "description_en": "Add or update a .gitignore file.",
+    "name": "see-no-evil",
+    "semver": null
+  },
+  {
+    "emoji": "📸",
+    "entity": "&#128248;",
+    "code": ":camera_flash:",
+    "description_zh": "添加或更新快照.",
+    "description_en": "Add or update snapshots.",
+    "name": "camera-flash",
+    "semver": null
+  },
+  {
+    "emoji": "⚗️",
+    "entity": "&#128248;",
+    "code": ":alembic:",
+    "description_zh": "完成实验.",
+    "description_en": "Perform experiments.",
+    "name": "alembic",
+    "semver": "patch"
+  },
+  {
+    "emoji": "🔍️",
+    "entity": "&#128269;",
+    "code": ":mag:",
+    "description_zh": "改善搜索引擎优化.",
+    "description_en": "Improve SEO.",
+    "name": "mag",
+    "semver": "patch"
+  },
+  {
+    "emoji": "🏷️",
+    "entity": "&#127991;",
+    "code": ":label:",
+    "description_zh": "添加或更新类型.",
+    "description_en": "Add or update types.",
+    "name": "label",
+    "semver": "patch"
+  },
+  {
+    "emoji": "🌱",
+    "entity": "&#127793;",
+    "code": ":seedling:",
+    "description_zh": "添加或更新种子文件.",
+    "description_en": "Add or update seed files.",
+    "name": "seedling",
+    "semver": null
+  },
+  {
+    "emoji": "🚩",
+    "entity": "&#x1F6A9;",
+    "code": ":triangular_flag_on_post:",
+    "description_zh": "添加、更新或删除特性标志.",
+    "description_en": "Add, update, or remove feature flags.",
+    "name": "triangular-flag-on-post",
+    "semver": "patch"
+  },
+  {
+    "emoji": "🥅",
+    "entity": "&#x1F945;",
+    "code": ":goal_net:",
+    "description_zh": "捕获错误.",
+    "description_en": "Catch errors.",
+    "name": "goal-net",
+    "semver": "patch"
+  },
+  {
+    "emoji": "💫",
+    "entity": "&#x1f4ab;",
+    "code": ":dizzy:",
+    "description_zh": "添加或更新动画和过渡.",
+    "description_en": "Add or update animations and transitions.",
+    "name": "animation",
+    "semver": "patch"
+  },
+  {
+    "emoji": "🗑️",
+    "entity": "&#x1F5D1;",
+    "code": ":wastebasket:",
+    "description_zh": "已弃用需要清理的代码.",
+    "description_en": "Deprecate code that needs to be cleaned up.",
+    "name": "wastebasket",
+    "semver": "patch"
+  },
+  {
+    "emoji": "🛂",
+    "entity": "&#x1F6C2;",
+    "code": ":passport_control:",
+    "description_zh": "处理与授权、角色和权限相关的代码.",
+    "description_en": "Work on code related to authorization, roles and permissions.",
+    "name": "passport-control",
+    "semver": "patch"
+  },
+  {
+    "emoji": "🩹",
+    "entity": "&#x1FA79;",
+    "code": ":adhesive_bandage:",
+    "description_zh": "简单的修复非关键问题.",
+    "description_en": "Simple fix for a non-critical issue.",
+    "name": "adhesive-bandage",
+    "semver": "patch"
+  },
+  {
+    "emoji": "🧐",
+    "entity": "&#x1F9D0;",
+    "code": ":monocle_face:",
+    "description_zh": "数据探索 / 检查.",
+    "description_en": "Data exploration / inspection.",
+    "name": "monocle-face",
+    "semver": null
+  },
+  {
+    "emoji": "⚰️",
+    "entity": "&#x26B0;",
+    "code": ":coffin:",
+    "description_zh": "删除无用代码.",
+    "description_en": "Remove dead code.",
+    "name": "coffin",
+    "semver": null
+  },
+  {
+    "emoji": "🧪",
+    "entity": "&#x1F9EA;",
+    "code": ":test_tube:",
+    "description_zh": "添加失败的测试.",
+    "description_en": "Add a failing test.",
+    "name": "test-tube",
+    "semver": null
+  },
+  {
+    "emoji": "👔",
+    "entity": "&#128084;",
+    "code": ":necktie:",
+    "description_zh": "添加或更新业务逻辑",
+    "description_en": "Add or update business logic",
+    "name": "necktie",
+    "semver": "patch"
+  }
+]
