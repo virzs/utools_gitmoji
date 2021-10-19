@@ -26,7 +26,6 @@ export function App() {
   const [select, setSelect] = useState<string>("");
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [offset, setOffset] = useState<number>(0);
-  const [scrollNum, setScrollNum] = useState<number>(0);
 
   const setSubInput = () => {
     utools.setSubInput(({ text }: any) => {
@@ -172,6 +171,11 @@ export function App() {
         }
         break;
       case "Enter":
+        if (!utools) return;
+        utools.hideMainWindow();
+        utools.copyText(select);
+        utools.showNotification(`已复制 ${select}`);
+        utools.outPlugin();
         break;
     }
     // onKeyDown(e.code);
@@ -203,6 +207,7 @@ export function App() {
             if (!utools) return;
             utools.hideMainWindow();
             utools.copyText(code);
+            utools.showNotification(`已复制 ${code}`);
             utools.outPlugin();
           }}
         />
