@@ -2,7 +2,7 @@
  * @Author: Vir
  * @Date: 2021-10-18 22:09:56
  * @Last Modified by: Vir
- * @Last Modified time: 2021-10-19 15:41:40
+ * @Last Modified time: 2021-10-20 17:25:20
  */
 
 import classNames from "classnames";
@@ -20,8 +20,8 @@ export interface ItemProps {
 const Item: FunctionComponent<ItemProps> = ({ value, code, title, description, onSelect, onClick }) => {
   return (
     <li
-      className={classNames("h-12 cursor-pointer pr-16 pl-4 pt-1 select-none transition-all", {
-        "bg-gray-200": value === code,
+      className={classNames("h-12 cursor-pointer pr-16 pl-4 pt-1 select-none transition-all dark:text-white", {
+        "bg-gray-200 dark:bg-dark-active": value === code,
       })}
       onMouseEnter={() => onSelect(code)}
       onClick={() => onClick(code)}

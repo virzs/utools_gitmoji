@@ -2,7 +2,7 @@
  * @Author: Vir
  * @Date: 2021-10-18 22:10:04
  * @Last Modified by: Vir
- * @Last Modified time: 2021-10-20 17:08:29
+ * @Last Modified time: 2021-10-20 17:24:04
  */
 import List from "./components/list";
 import Item from "./components/listItem";
@@ -227,27 +227,29 @@ export function App() {
   }, [record, select, activeIndex, filterData, showData]);
 
   return (
-    <List eref={listRef}>
-      {showData.map((i, j) => (
-        <Item
-          value={select}
-          code={i.code}
-          title={i.title}
-          description={i.description}
-          onSelect={(code) => {
-            setSelect(code);
-            setActiveIndex(j);
-          }}
-          onClick={(code) => {
-            if (!utools) return;
-            utools.hideMainWindow();
-            utools.copyText(code);
-            utools.showNotification(`已复制 ${code}`);
-            utools.outPlugin();
-          }}
-        />
-      ))}
-      {showData.length === 0 && <Empty />}
-    </List>
+    <div className="dark:bg-dark">
+      <List eref={listRef}>
+        {showData.map((i, j) => (
+          <Item
+            value={select}
+            code={i.code}
+            title={i.title}
+            description={i.description}
+            onSelect={(code) => {
+              setSelect(code);
+              setActiveIndex(j);
+            }}
+            onClick={(code) => {
+              if (!utools) return;
+              utools.hideMainWindow();
+              utools.copyText(code);
+              utools.showNotification(`已复制 ${code}`);
+              utools.outPlugin();
+            }}
+          />
+        ))}
+        {showData.length === 0 && <Empty />}
+      </List>
+    </div>
   );
 }
