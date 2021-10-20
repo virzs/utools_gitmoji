@@ -2,7 +2,7 @@
  * @Author: Vir
  * @Date: 2021-10-18 22:10:04
  * @Last Modified by: Vir
- * @Last Modified time: 2021-10-20 17:24:04
+ * @Last Modified time: 2021-10-20 17:36:03
  */
 import List from "./components/list";
 import Item from "./components/listItem";
@@ -206,7 +206,7 @@ export function App() {
       utools.setExpendHeight(10 * 48);
       setSearchText("");
       setOffset(0);
-      setSelect("");
+      setSelect(showData[0].code);
       setActiveIndex(0);
       setRecord({ start: 0, end: 9, total: 10 });
       changeShowData();
