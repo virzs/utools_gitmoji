@@ -2,7 +2,7 @@
  * @Author: Vir
  * @Date: 2021-10-18 22:10:04
  * @Last Modified by: Vir
- * @Last Modified time: 2021-10-20 17:38:11
+ * @Last Modified time: 2021-10-20 17:54:02
  */
 import List from "./components/list";
 import Item from "./components/listItem";
@@ -167,8 +167,17 @@ export function App() {
     }
   };
 
+  // 复制 code 并退出
+  const copyAndOut = (code: string) => {
+    if (!code) return;
+    utools.hideMainWindow();
+    utools.copyText(code);
+    utools.showNotification(`已复制 ${code}`);
+    utools.outPlugin();
+  };
+
   const KeyEventListener = (e: KeyboardEvent) => {
-    const { code } = e;
+    const { code, altKey, key } = e;
     switch (code) {
       case "ArrowUp":
       case "ArrowDown":
@@ -182,10 +191,23 @@ export function App() {
         break;
       case "Enter":
         if (!utools) return;
-        utools.hideMainWindow();
-        utools.copyText(select);
-        utools.showNotification(`已复制 ${select}`);
-        utools.outPlugin();
+        copyAndOut(select);
+        break;
+      case "Digit1":
+      case "Digit2":
+      case "Digit3":
+      case "Digit4":
+      case "Digit5":
+      case "Digit6":
+      case "Digit7":
+      case "Digit8":
+      case "Digit9":
+      case "Digit0":
+        if (!altKey) return;
+        const privKey = Number(key) === 0 ? 9 : Number(key) - 1;
+        const altSelect = showData[privKey];
+        if (!altSelect) return;
+        copyAndOut(altSelect.code);
         break;
     }
   };
@@ -227,10 +249,11 @@ export function App() {
   }, [record, select, activeIndex, filterData, showData]);
 
   return (
-    <div className="dark:bg-dark">
+    <div className="dark:bg-dark h-full">
       <List eref={listRef}>
         {showData.map((i, j) => (
           <Item
+            index={j}
             value={select}
             code={i.code}
             title={i.title}
