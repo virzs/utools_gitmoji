@@ -1375,6 +1375,11 @@ util-deprecate@^1.0.2:
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
   integrity sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=
 
+utools-api-types@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/utools-api-types/-/utools-api-types-2.3.0.tgz#ea667f803e04e96455e2d5deb09ce56d3436b687"
+  integrity sha512-wLw7o/FA3OQ7RtUgfyTI8T8c/U6vJgMnBos2cdau4uWAYpM+CEc7aSV/sDJXz8fQ9aBpe14SgabbSk8wbPHVDA==
+
 vite@^2.6.4:
   version "2.6.9"
   resolved "https://registry.yarnpkg.com/vite/-/vite-2.6.9.tgz#3dd7c50181254480a9e815278a3f848cd3e4df3a"
