@@ -151,7 +151,23 @@ export function App() {
     return -1;
   };
 
-  const EventListener = (e: KeyboardEvent) => {
+  const disposeShow = (offset: number) => {
+    if (offset !== 0) {
+      const { start, end } = record;
+      // ? 判断向上到第一个
+      if (start + offset < -1 || (activeIndex === 0 && offset === -1)) return;
+      // ? 判断向下到最后一个
+      if (activeIndex === filterData.length - 1 && offset === 1) return;
+      const nextActiveIndex = getEnabledActiveIndex(activeIndex + offset, offset);
+      const nextCode = filterData[nextActiveIndex]?.code;
+      if (!nextCode) return;
+      changeShowData(start + offset, end + offset, filterData[nextActiveIndex].code);
+      setActiveIndex(nextActiveIndex);
+      setSelect(nextCode);
+    }
+  };
+
+  const KeyEventListener = (e: KeyboardEvent) => {
     const { code } = e;
     switch (code) {
       case "ArrowUp":
@@ -162,20 +178,7 @@ export function App() {
         } else if (code === "ArrowDown") {
           privOffset = 1;
         }
-
-        if (privOffset !== 0) {
-          const { start, end } = record;
-          // ? 判断向上到第一个
-          if (start + privOffset < -1 || (activeIndex === 0 && privOffset === -1)) return;
-          // ? 判断向下到最后一个
-          if (activeIndex === filterData.length - 1 && privOffset === 1) return;
-          const nextActiveIndex = getEnabledActiveIndex(activeIndex + privOffset, privOffset);
-          const nextCode = filterData[nextActiveIndex]?.code;
-          if (!nextCode) return;
-          changeShowData(start + privOffset, end + privOffset, filterData[nextActiveIndex].code);
-          setActiveIndex(nextActiveIndex);
-          setSelect(nextCode);
-        }
+        disposeShow(privOffset);
         break;
       case "Enter":
         if (!utools) return;
@@ -185,6 +188,13 @@ export function App() {
         utools.outPlugin();
         break;
     }
+  };
+
+  const WheelEventListener = (e: WheelEvent) => {
+    const { deltaY } = e;
+    let privOffset = offset;
+    privOffset = deltaY > 0 ? 1 : -1;
+    disposeShow(privOffset);
   };
 
   useEffect(() => {
@@ -198,8 +208,12 @@ export function App() {
   }, [filterData]);
 
   useEffect(() => {
-    addEventListener("keydown", EventListener);
-    return () => removeEventListener("keydown", EventListener);
+    addEventListener("keydown", KeyEventListener);
+    addEventListener("wheel", WheelEventListener);
+    return () => {
+      removeEventListener("keydown", KeyEventListener);
+      removeEventListener("wheel", WheelEventListener);
+    };
   }, [record, select, activeIndex, filterData, showData]);
 
   return (
