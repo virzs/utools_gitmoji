@@ -2,7 +2,7 @@
  * @Author: Vir
  * @Date: 2021-10-18 22:10:04
  * @Last Modified by: Vir
- * @Last Modified time: 2021-10-20 17:36:03
+ * @Last Modified time: 2021-10-20 17:38:11
  */
 import List from "./components/list";
 import Item from "./components/listItem";
@@ -199,10 +199,10 @@ export function App() {
 
   useEffect(() => {
     if (!ready) return;
-    setSubInput();
     utools.setExpendHeight(10 * 48);
     // ! 插件每次进入时初始化
     utools.onPluginEnter(() => {
+      setSubInput();
       utools.setExpendHeight(10 * 48);
       setSearchText("");
       setOffset(0);
