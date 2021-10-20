@@ -20,7 +20,7 @@ export interface ItemProps {
 const Item: FunctionComponent<ItemProps> = ({ value, code, title, description, onSelect, onClick }) => {
   return (
     <li
-      className={classNames("h-12 cursor-pointer pr-16 pl-4 pt-1 select-none", {
+      className={classNames("h-12 cursor-pointer pr-16 pl-4 pt-1 select-none transition-all", {
         "bg-gray-200": value === code,
       })}
       onMouseEnter={() => onSelect(code)}
