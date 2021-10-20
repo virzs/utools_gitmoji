@@ -2,7 +2,7 @@
  * @Author: Vir
  * @Date: 2021-10-18 22:10:04
  * @Last Modified by: Vir
- * @Last Modified time: 2021-10-19 18:00:32
+ * @Last Modified time: 2021-10-20 17:08:29
  */
 import List from "./components/list";
 import Item from "./components/listItem";
@@ -200,7 +200,17 @@ export function App() {
   useEffect(() => {
     if (!ready) return;
     setSubInput();
-    if (utools && ready) utools.setExpendHeight(10 * 48);
+    utools.setExpendHeight(10 * 48);
+    // ! 插件每次进入时初始化
+    utools.onPluginEnter(() => {
+      utools.setExpendHeight(10 * 48);
+      setSearchText("");
+      setOffset(0);
+      setSelect("");
+      setActiveIndex(0);
+      setRecord({ start: 0, end: 9, total: 10 });
+      changeShowData();
+    });
   }, [ready]);
 
   useEffect(() => {
