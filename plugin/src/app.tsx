@@ -18,25 +18,34 @@ export interface SourceData {
   code: string;
 }
 
+export interface Record {
+  start: number;
+  end: number;
+  total: number;
+}
+
 export function App() {
   const { utools } = window;
   const listRef = useRef<RefObject<Ref<HTMLUListElement>> | null>(null);
-  const [ready, setReady] = useState<boolean>(false);
-  const [searchText, setSearchText] = useState<string>("");
-  const [select, setSelect] = useState<string>("");
-  const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [ready, setReady] = useState<boolean>(false); // 插件是否准备完成
+  const [searchText, setSearchText] = useState<string>(""); // 搜索关键字
+  const [select, setSelect] = useState<string>(""); // 当前选中的 code 值
+  const [activeIndex, setActiveIndex] = useState<number>(0); // 当前选中的下标
   const [offset, setOffset] = useState<number>(0);
+
+  const [showData, setShowData] = useState<SourceData[]>([]); // 用于显示的数据，最大10条
+  const [record, setRecord] = useState<Record>({ start: 0, end: 9, total: 10 }); // 记录当前数据
+
+  if (utools)
+    utools.onPluginReady(() => {
+      setReady(true);
+    });
 
   const setSubInput = () => {
     utools.setSubInput(({ text }: any) => {
       setSearchText(text);
     }, "搜索");
   };
-
-  if (utools)
-    utools.onPluginReady(() => {
-      setReady(true);
-    });
 
   // 替换模板
   const templete = (val: any) => `<font class='text-red-500 font-semibold'>${val}</font>`;
@@ -97,39 +106,39 @@ export function App() {
     // ! 数据变化时重新选择
     setSelect(newData.length > 0 ? newData[0].code : "");
     setActiveIndex(0);
-
-    if (utools && ready)
-      utools.setExpendHeight(newData.length > 10 ? 10 * 48 : newData.length > 0 ? newData.length * 48 : 48);
-
+    setRecord({
+      ...record,
+      start: 0,
+      end: newData.length > 10 ? 9 : newData.length,
+      total: newData.length,
+    });
     return newData;
   }, [searchText]);
 
-  // const scrollIntoView = (code: string, index: number) => {
-  //   if (listRef.current) {
-  //     setSelect(filterData[index].code);
-  //     setActiveIndex(index);
-  //     if (filterData.length > 10 && code === "ArrowDown") {
-  //       switch (code) {
-  //         case "ArrowDown":
-  //           listRef.current.scrollTo({ top: index * 48 - 432 });
-  //           break;
-  //         case "ArrowUp":
-  //           listRef.current.scrollTo({ top: -(index * 48) });
-  //           break;
-  //       }
-  //     }
-  //   }
-  // };
+  // ! 设置显示的数据，最大10条
+  const changeShowData = (start: number = 0, end: number = 9, code = "") => {
+    const total = filterData.length;
+    let privStart = start;
+    let privEnd = end;
+    if (end >= total) {
+      privStart = 0;
+      privEnd = total > 10 ? 9 : total;
+    }
+    const codeIndex = showData.findIndex((i) => i.code === code);
+    if (codeIndex !== -1) return;
+    const newData = filterData.slice(privStart, total >= 0 ? privEnd + 1 : total);
 
-  // const onKeyDown = (code: string) => {
-  //   if (!listRef.current) return;
-  //   if (code === "ArrowUp") {
-  //     scrollIntoView(code, activeIndex <= 0 ? 0 : activeIndex - 1);
-  //   }
-  //   if (code === "ArrowDown") {
-  //     scrollIntoView(code, activeIndex >= filterData.length - 1 ? activeIndex : activeIndex + 1);
-  //   }
-  // };
+    if (utools && ready) utools.setExpendHeight(newData.length > 0 ? newData.length * 48 : 48);
+    if (newData.length < 10 && newData.length > 11) return;
+    setShowData(newData);
+
+    setRecord({
+      ...record,
+      total,
+      start: privStart,
+      end: privEnd,
+    });
+  };
 
   const getEnabledActiveIndex = (index: number, offset: number = 1): number => {
     const len = filterData.length;
@@ -140,15 +149,6 @@ export function App() {
     }
     setOffset(offset);
     return -1;
-  };
-
-  const scrollIntoView = (index: number) => {
-    if (listRef.current) {
-      let scroll = 0;
-      if (index < 10) scroll = 0;
-      if (index > 10) scroll = index * 48 - 432;
-      listRef.current.scrollTo({ top: scroll });
-    }
   };
 
   const EventListener = (e: KeyboardEvent) => {
@@ -164,10 +164,17 @@ export function App() {
         }
 
         if (privOffset !== 0) {
+          const { start, end } = record;
+          // ? 判断向上到第一个
+          if (start + privOffset < -1 || (activeIndex === 0 && privOffset === -1)) return;
+          // ? 判断向下到最后一个
+          if (activeIndex === filterData.length - 1 && privOffset === 1) return;
           const nextActiveIndex = getEnabledActiveIndex(activeIndex + privOffset, privOffset);
-          scrollIntoView(nextActiveIndex);
+          const nextCode = filterData[nextActiveIndex]?.code;
+          if (!nextCode) return;
+          changeShowData(start + privOffset, end + privOffset, filterData[nextActiveIndex].code);
           setActiveIndex(nextActiveIndex);
-          setSelect(filterData[nextActiveIndex].code);
+          setSelect(nextCode);
         }
         break;
       case "Enter":
@@ -178,22 +185,26 @@ export function App() {
         utools.outPlugin();
         break;
     }
-    // onKeyDown(e.code);
   };
 
   useEffect(() => {
     if (!ready) return;
     setSubInput();
+    if (utools && ready) utools.setExpendHeight(10 * 48);
   }, [ready]);
+
+  useEffect(() => {
+    changeShowData();
+  }, [filterData]);
 
   useEffect(() => {
     addEventListener("keydown", EventListener);
     return () => removeEventListener("keydown", EventListener);
-  }, [select, activeIndex, filterData]);
+  }, [record, select, activeIndex, filterData, showData]);
 
   return (
     <List eref={listRef}>
-      {filterData.map((i, j) => (
+      {showData.map((i, j) => (
         <Item
           value={select}
           code={i.code}
@@ -212,7 +223,7 @@ export function App() {
           }}
         />
       ))}
-      {filterData.length === 0 && <Empty />}
+      {showData.length === 0 && <Empty />}
     </List>
   );
 }
