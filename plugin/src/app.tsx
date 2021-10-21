@@ -66,7 +66,7 @@ export function App() {
   // 格式化数据
   const sourceData: SourceData[] = useMemo(() => {
     return data.map((i) => ({
-      title: `${i.emoji} Shortcode: ${i.code}`,
+      title: `${i.emoji} ${i.code}`,
       description: `${i.description_zh} (${i.description_en})`,
       code: i.code,
     }));
