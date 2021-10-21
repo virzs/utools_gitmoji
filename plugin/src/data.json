@@ -3,7 +3,7 @@
     "emoji": "🎨",
     "entity": "&#x1f3a8;",
     "code": ":art:",
-    "description_zh": "改善结构 / 代码格式.",
+    "description_zh": "结构改进 / 格式化代码.",
     "description_en": "Improve structure / format of the code.",
     "name": "art",
     "semver": null
@@ -66,7 +66,7 @@
     "emoji": "🚀",
     "entity": "&#x1f680;",
     "code": ":rocket:",
-    "description_zh": "部署的东西.",
+    "description_zh": "部署相关.",
     "description_en": "Deploy stuff.",
     "name": "rocket",
     "semver": null
@@ -120,7 +120,7 @@
     "emoji": "🚨",
     "entity": "&#x1f6a8;",
     "code": ":rotating_light:",
-    "description_zh": "修复编译器 / linter 警告.",
+    "description_zh": "消除编译器 / linter 警告.",
     "description_en": "Fix compiler / linter warnings.",
     "name": "rotating-light",
     "semver": null
@@ -147,7 +147,7 @@
     "emoji": "⬇️",
     "entity": "⬇️",
     "code": ":arrow_down:",
-    "description_zh": "降级的依赖性.",
+    "description_zh": "降级依赖.",
     "description_en": "Downgrade dependencies.",
     "name": "arrow-down",
     "semver": "patch"
@@ -156,7 +156,7 @@
     "emoji": "⬆️",
     "entity": "⬆️",
     "code": ":arrow_up:",
-    "description_zh": "升级的依赖关系.",
+    "description_zh": "升级依赖.",
     "description_en": "Upgrade dependencies.",
     "name": "arrow-up",
     "semver": "patch"
@@ -165,7 +165,7 @@
     "emoji": "📌",
     "entity": "&#x1F4CC;",
     "code": ":pushpin:",
-    "description_zh": "固定到特定版本的依赖项.",
+    "description_zh": "将依赖固定到特定版本.",
     "description_en": "Pin dependencies to specific versions.",
     "name": "pushpin",
     "semver": "patch"
@@ -201,7 +201,7 @@
     "emoji": "➕",
     "entity": "&#10133;",
     "code": ":heavy_plus_sign:",
-    "description_zh": "添加一个依赖项.",
+    "description_zh": "添加一个依赖.",
     "description_en": "Add a dependency.",
     "name": "heavy-plus-sign",
     "semver": "patch"
@@ -237,7 +237,7 @@
     "emoji": "🌐",
     "entity": "&#127760;",
     "code": ":globe_with_meridians:",
-    "description_zh": "Internationalization and localization.",
+    "description_zh": "国际化和本地化.",
     "description_en": "Internationalization and localization.",
     "name": "globe-with-meridians",
     "semver": "patch"
@@ -246,7 +246,7 @@
     "emoji": "✏️",
     "entity": "&#59161;",
     "code": ":pencil2:",
-    "description_zh": "修复拼写错误.",
+    "description_zh": "修正拼写错误.",
     "description_en": "Fix typos.",
     "name": "pencil2",
     "semver": "patch"
@@ -264,7 +264,7 @@
     "emoji": "⏪️",
     "entity": "&#9194;",
     "code": ":rewind:",
-    "description_zh": "恢复的变化.",
+    "description_zh": "回滚改动.",
     "description_en": "Revert changes.",
     "name": "rewind",
     "semver": "patch"
@@ -327,7 +327,7 @@
     "emoji": "🍱",
     "entity": "&#1F371",
     "code": ":bento:",
-    "description_zh": "添加或更新资产.",
+    "description_zh": "添加或更新静态资源.",
     "description_en": "Add or update assets.",
     "name": "bento",
     "semver": "patch"
@@ -354,7 +354,7 @@
     "emoji": "🍻",
     "entity": "&#x1f37b;",
     "code": ":beers:",
-    "description_zh": "编写代码醉醺醺地.",
+    "description_zh": "醉写代码.",
     "description_en": "Write code drunkenly.",
     "name": "beers",
     "semver": null
@@ -399,7 +399,7 @@
     "emoji": "👥",
     "entity": "&#128101;",
     "code": ":busts_in_silhouette:",
-    "description_zh": "添加或更新贡献者.",
+    "description_zh": "添加或更新贡献者(们).",
     "description_en": "Add or update contributor(s).",
     "name": "busts-in-silhouette",
     "semver": null
@@ -435,7 +435,7 @@
     "emoji": "🤡",
     "entity": "&#129313;",
     "code": ":clown_face:",
-    "description_zh": "假的东西.",
+    "description_zh": "模拟相关.",
     "description_en": "Mock things.",
     "name": "clown-face",
     "semver": null
@@ -444,7 +444,7 @@
     "emoji": "🥚",
     "entity": "&#129370;",
     "code": ":egg:",
-    "description_zh": "添加或更新一个复活节彩蛋.",
+    "description_zh": "添加或更新一个彩蛋.",
     "description_en": "Add or update an easter egg.",
     "name": "egg",
     "semver": "patch"
@@ -471,7 +471,7 @@
     "emoji": "⚗️",
     "entity": "&#128248;",
     "code": ":alembic:",
-    "description_zh": "完成实验.",
+    "description_zh": "研究新事物.",
     "description_en": "Perform experiments.",
     "name": "alembic",
     "semver": "patch"
