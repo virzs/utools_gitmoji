@@ -8,7 +8,7 @@
 import { FunctionComponent } from "preact";
 
 const Empty: FunctionComponent = () => {
-  return <div className="h-12 text-sm flex items-center justify-center">没有匹配到的内容</div>;
+  return <div className="h-12 text-sm flex items-center justify-center dark:text-white">没有匹配到的内容</div>;
 };
 
 export default Empty;
