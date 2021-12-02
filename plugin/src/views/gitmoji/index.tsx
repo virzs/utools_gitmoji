@@ -9,7 +9,8 @@ import React from "preact";
 import List from "../../components/list";
 import Item from "../../components/listItem";
 import data from "../../data.json";
-import { useState, useEffect, useMemo, useRef, Ref } from "preact/hooks";
+import { useState, useEffect, useMemo, useRef, Ref, useImperativeHandle } from "preact/hooks";
+import { forwardRef } from "preact/compat";
 import Pinyin from "pinyin-match";
 import Empty from "../../components/empty";
 import { RefObject } from "preact";
@@ -27,7 +28,7 @@ export interface Record {
   total: number;
 }
 
-const GitEmoji: React.FunctionComponent<PluginProps> = (props) => {
+const GitEmoji: React.FunctionComponent<PluginProps> = (props, ref) => {
   const { utools, ready = false } = props;
   const listRef = useRef<RefObject<Ref<HTMLUListElement>> | null>(null);
   const [searchText, setSearchText] = useState<string>(""); // 搜索关键字
@@ -230,17 +231,15 @@ const GitEmoji: React.FunctionComponent<PluginProps> = (props) => {
   };
 
   useEffect(() => {
-    if (!ready) return;
-    utools.setExpendHeight(10 * 48);
-    // ! 插件每次进入时初始化
-    utools.onPluginEnter(({ code }) => {
-      initFeature(code as PluginFeaturesCode);
-    });
-  }, [ready]);
-
-  useEffect(() => {
     changeShowData();
   }, [filterData]);
+
+  // ! 暴露内部方法解决utools只能调用内部生命周期一次的问题
+  useImperativeHandle(ref, () => ({
+    initFeature(code: PluginFeaturesCode) {
+      initFeature(code);
+    },
+  }));
 
   useEffect(() => {
     addEventListener("keydown", KeyEventListener);
@@ -278,4 +277,4 @@ const GitEmoji: React.FunctionComponent<PluginProps> = (props) => {
   );
 };
 
-export default GitEmoji;
+export default forwardRef(GitEmoji);
