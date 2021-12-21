@@ -5,7 +5,6 @@
  * @Last Modified time: 2021-12-02 17:28:17
  */
 
-import React from "preact";
 import List from "../../components/list";
 import Item from "../../components/listItem";
 import data from "../../data.json";
@@ -13,7 +12,7 @@ import { useState, useEffect, useMemo, useRef, Ref, useImperativeHandle } from "
 import { forwardRef } from "preact/compat";
 import Pinyin from "pinyin-match";
 import Empty from "../../components/empty";
-import { RefObject } from "preact";
+import { FunctionComponent, RefObject } from "preact";
 import { PluginFeaturesCode, PluginProps } from "../../app";
 
 export interface SourceData {
@@ -28,7 +27,7 @@ export interface Record {
   total: number;
 }
 
-const GitEmoji: React.FunctionComponent<PluginProps> = (props, ref) => {
+const GitEmoji: FunctionComponent<PluginProps> = (props, ref) => {
   const { utools, ready = false } = props;
   const listRef = useRef<RefObject<Ref<HTMLUListElement>> | null>(null);
   const [searchText, setSearchText] = useState<string>(""); // 搜索关键字

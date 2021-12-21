@@ -6,6 +6,11 @@ module.exports = {
       colors: {
         dark: "#303133",
         "dark-active": "#515151",
+        "dark-active-second": "#E5E7EB",
+        "dark-hover": "#F3F4F6",
+      },
+      spacing: {
+        50: "12.5rem",
       },
     },
   },
