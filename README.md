@@ -12,3 +12,17 @@ uTools gitmoji 插件
 支持拼音搜索、中英文搜索
 
 中文翻译可能不太对，欢迎提 issues 或 pr
+
+## 关于打包
+
+``` bash
+> cd plugin
+
+> yarn build:no_check
+```
+
+`build` 文件在 `plugin/dist` 中
+
+复制 `logo.png`、`plugin.json` 文件到 `dist` 文件夹
+
+将 `plugin.json` 中 `main` 修改为 `index.html`

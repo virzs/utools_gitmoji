@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "build:not_check": "vite build",
     "serve": "vite preview"
   },
   "dependencies": {
