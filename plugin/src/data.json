@@ -108,6 +108,15 @@
     "semver": "patch"
   },
   {
+    "emoji": "🔐",
+    "entity": "&#x1f510;",
+    "code": ":closed_lock_with_key:",
+    "description_zh": "添加或更新机密",
+    "description_en": "Add or update secrets.",
+    "name": "closed-lock-with-key",
+    "semver": null
+  },
+  {
     "emoji": "🔖",
     "entity": "&#x1f516;",
     "code": ":bookmark:",
@@ -592,5 +601,32 @@
     "description_en": "Add or update business logic",
     "name": "necktie",
     "semver": "patch"
+  },
+  {
+    "emoji": "🩺",
+    "entity": "&#x1FA7A;",
+    "code": ":stethoscope:",
+    "description_zh": "添加或更新运行状况检查",
+    "description_en": "Add or update healthcheck.",
+    "name": "stethoscope",
+    "semver": null
+  },
+  {
+    "emoji": "🧱",
+    "entity": "&#x1f9f1;",
+    "code": ":bricks:",
+    "description_zh": "基础设施相关的变化",
+    "description_en": "Infrastructure related changes.",
+    "name": "bricks",
+    "semver": null
+  },
+  {
+    "emoji": "🧑‍💻",
+    "entity": "&#129489;&#8205;&#128187;",
+    "code": ":technologist:",
+    "description_zh": "改善开发人员体验",
+    "description_en": "Improve developer experience",
+    "name": "technologist",
+    "semver": null
   }
 ]
