@@ -168,14 +168,17 @@ const GitEmoji: FunctionComponent<PluginProps> = (props, ref) => {
   };
 
   const KeyEventListener = (e: KeyboardEvent) => {
-    const { code, altKey, key } = e;
+    e.preventDefault();
+    const { code, altKey, key, shiftKey } = e;
+    // TODO 按 tab 切换到下一个 shift + tab 切换到上一个
     switch (code) {
       case "ArrowUp":
       case "ArrowDown":
+      case "Tab":
         let privOffset = offset;
-        if (code === "ArrowUp") {
+        if (code === "ArrowUp" || (code === "Tab" && shiftKey)) {
           privOffset = -1;
-        } else if (code === "ArrowDown") {
+        } else if (code === "ArrowDown" || code === "Tab") {
           privOffset = 1;
         }
         disposeShow(privOffset);
