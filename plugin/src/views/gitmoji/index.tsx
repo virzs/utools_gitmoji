@@ -1,8 +1,8 @@
 /*
- * @Author: Vir
+ * @Author: vir virs98@outlook.com
  * @Date: 2021-12-02 15:47:19
- * @Last Modified by: Vir
- * @Last Modified time: 2021-12-02 17:28:17
+ * @LastEditors: vir virs98@outlook.com
+ * @LastEditTime: 2022-07-18 21:04:23
  */
 
 import List from "../../components/list";
@@ -32,11 +32,9 @@ const GitEmoji: FunctionComponent<PluginProps> = (props, ref) => {
   const listRef = useRef<RefObject<Ref<HTMLUListElement>> | null>(null);
   const [searchText, setSearchText] = useState<string>(""); // 搜索关键字
   const [select, setSelect] = useState<string>(""); // 当前选中的 code 值
-  const [activeIndex, setActiveIndex] = useState<number>(0); // 当前选中的下标
   const [offset, setOffset] = useState<number>(0);
 
   const [showData, setShowData] = useState<SourceData[]>([]); // 用于显示的数据，最大10条
-  const [record, setRecord] = useState<Record>({ start: 0, end: 9, total: 10 }); // 记录当前数据
 
   // 替换模板
   const templete = (val: any) => `<font class='text-red-500 font-semibold'>${val}</font>`;
@@ -96,65 +94,35 @@ const GitEmoji: FunctionComponent<PluginProps> = (props, ref) => {
 
     // ! 数据变化时重新选择
     setSelect(newData.length > 0 ? newData[0].code : "");
-    setActiveIndex(0);
-    setRecord({
-      ...record,
-      start: 0,
-      end: newData.length > 10 ? 9 : newData.length,
-      total: newData.length,
-    });
     return newData;
   }, [searchText]);
-
   // ! 设置显示的数据，最大10条
-  const changeShowData = (start: number = 0, end: number = 9, code = "") => {
-    const total = filterData.length;
-    let privStart = start;
-    let privEnd = end;
-    if (end >= total) {
-      privStart = 0;
-      privEnd = total > 10 ? 9 : total;
-    }
-    const codeIndex = showData.findIndex((i) => i.code === code);
-    if (codeIndex !== -1) return;
-    const newData = filterData.slice(privStart, total >= 0 ? privEnd + 1 : total);
 
-    if (utools && ready) utools.setExpendHeight(newData.length > 0 ? newData.length * 48 : 48);
-    if (newData.length < 10 && newData.length > 11) return;
-    setShowData(newData);
-
-    setRecord({
-      ...record,
-      total,
-      start: privStart,
-      end: privEnd,
-    });
-  };
-
-  const getEnabledActiveIndex = (index: number, offset: number = 1): number => {
-    const len = filterData.length;
-
-    for (let i = 0; i < len; i += 1) {
-      const current = (index + i * offset + len) % len;
-      return current;
-    }
-    setOffset(offset);
-    return -1;
-  };
-
+  // 判断需要展示哪些数据
   const disposeShow = (offset: number) => {
+    let newData: SourceData[] = JSON.parse(JSON.stringify(showData));
+
     if (offset !== 0) {
-      const { start, end } = record;
-      // ? 判断向上到第一个
-      if (start + offset < -1 || (activeIndex === 0 && offset === -1)) return;
-      // ? 判断向下到最后一个
-      if (activeIndex === filterData.length - 1 && offset === 1) return;
-      const nextActiveIndex = getEnabledActiveIndex(activeIndex + offset, offset);
-      const nextCode = filterData[nextActiveIndex]?.code;
-      if (!nextCode) return;
-      changeShowData(start + offset, end + offset, filterData[nextActiveIndex].code);
-      setActiveIndex(nextActiveIndex);
-      setSelect(nextCode);
+      // 获取当前选中项实际下标
+      const realActiveIndex = filterData.findIndex((i) => i.code === select);
+      if (offset == -1) {
+        const nextActive = realActiveIndex === 0 ? filterData[filterData.length - 1] : filterData[realActiveIndex - 1];
+        setSelect(nextActive.code);
+        !newData.find((i) => i.code === nextActive.code) && newData.unshift(nextActive);
+        newData = newData.slice(0, 10);
+      }
+      if (offset === 1) {
+        const nextActive = realActiveIndex === filterData.length - 1 ? filterData[0] : filterData[realActiveIndex + 1];
+        setSelect(nextActive.code);
+        !newData.find((i) => i.code === nextActive.code) && newData.push(nextActive);
+        newData = newData.slice(-10);
+      }
+      setShowData(newData);
+      if (utools && ready) utools.setExpendHeight(newData.length > 0 ? newData.length * 48 : 48);
+    } else {
+      const newData = filterData.slice(0, 10);
+      setShowData(newData);
+      if (utools && ready) utools.setExpendHeight(newData.length * 48);
     }
   };
 
@@ -170,8 +138,9 @@ const GitEmoji: FunctionComponent<PluginProps> = (props, ref) => {
   const KeyEventListener = (e: KeyboardEvent) => {
     e.preventDefault();
     const { code, altKey, key, shiftKey } = e;
-    // TODO 按 tab 切换到下一个 shift + tab 切换到上一个
     switch (code) {
+      // ! 按 tab 切换到下一个 shift + tab 切换到上一个
+      // ! 按 箭头 上 / 下 切换
       case "ArrowUp":
       case "ArrowDown":
       case "Tab":
@@ -183,10 +152,12 @@ const GitEmoji: FunctionComponent<PluginProps> = (props, ref) => {
         }
         disposeShow(privOffset);
         break;
+      // ! 按 Enter 选中
       case "Enter":
         if (!utools) return;
         copyAndOut(select);
         break;
+      // ! 按 Alt + 数字 选中对应
       case "Digit1":
       case "Digit2":
       case "Digit3":
@@ -227,13 +198,11 @@ const GitEmoji: FunctionComponent<PluginProps> = (props, ref) => {
     utools.setExpendHeight(10 * 48);
     setOffset(0);
     setSelect(showData[0].code);
-    setActiveIndex(0);
-    setRecord({ start: 0, end: 9, total: 10 });
-    changeShowData();
+    setShowData(filterData.slice(0, 10));
   };
 
   useEffect(() => {
-    changeShowData();
+    disposeShow(offset);
   }, [filterData]);
 
   // ! 暴露内部方法解决utools只能调用内部生命周期一次的问题
@@ -250,7 +219,7 @@ const GitEmoji: FunctionComponent<PluginProps> = (props, ref) => {
       removeEventListener("keydown", KeyEventListener);
       removeEventListener("wheel", WheelEventListener);
     };
-  }, [record, select, activeIndex, filterData, showData]);
+  }, [select, filterData, showData]);
 
   return (
     <List eref={listRef}>
@@ -263,7 +232,6 @@ const GitEmoji: FunctionComponent<PluginProps> = (props, ref) => {
           description={i.description}
           onSelect={(code) => {
             setSelect(code);
-            setActiveIndex(j);
           }}
           onClick={(code) => {
             if (!utools) return;
