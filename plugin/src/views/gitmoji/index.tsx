@@ -2,7 +2,7 @@
  * @Author: vir virs98@outlook.com
  * @Date: 2021-12-02 15:47:19
  * @LastEditors: vir virs98@outlook.com
- * @LastEditTime: 2022-07-18 21:04:23
+ * @LastEditTime: 2023-01-11 10:18:49
  */
 
 import List from "../../components/list";
@@ -14,6 +14,7 @@ import Pinyin from "pinyin-match";
 import Empty from "../../components/empty";
 import { FunctionComponent, RefObject } from "preact";
 import { PluginFeaturesCode, PluginProps } from "../../app";
+import defaultSetting from "../../config/setting";
 
 export interface SourceData {
   title: string;
@@ -36,20 +37,25 @@ const GitEmoji: FunctionComponent<PluginProps> = (props, ref) => {
 
   const [showData, setShowData] = useState<SourceData[]>([]); // 用于显示的数据，最大10条
 
+  // 获取本地设置
+  const setting = utools.dbStorage.getItem("setting") ?? defaultSetting;
+  const { feature } = setting;
+  const { copyToChar = true, addSpaceAfterCopy = false } = feature;
+
   // 替换模板
-  const templete = (val: any) => `<font class='text-red-500 font-semibold'>${val}</font>`;
+  const template = (val: any) => `<font class='text-red-500 font-semibold'>${val}</font>`;
 
   // 替换拼音匹配内容
   const replaceStr = (str: string, start: number, stop: number) => {
     const replace = str.slice(start, stop + 1);
-    return str.substr(0, start) + templete(replace) + str.substr(stop + 1);
+    return str.substr(0, start) + template(replace) + str.substr(stop + 1);
   };
 
   // 直接替换
-  const keywordscolorful = (str: string, key: string) => {
+  const keywordsColorful = (str: string, key: string) => {
     var reg = new RegExp("(" + key + ")", "g");
-    var newstr = str.replace(reg, templete("$1"));
-    return newstr;
+    var newStr = str.replace(reg, template("$1"));
+    return newStr;
   };
 
   // 格式化数据
@@ -83,11 +89,11 @@ const GitEmoji: FunctionComponent<PluginProps> = (props, ref) => {
             if (typeof pinyinMatch === "object" && pinyinMatch.length === 2) {
               newDesc = replaceStr(i.description, pinyinMatch[0], pinyinMatch[1]);
             } else {
-              newDesc = keywordscolorful(i.description, searchText);
+              newDesc = keywordsColorful(i.description, searchText);
             }
             return {
               code: i.code,
-              title: keywordscolorful(i.title, searchText),
+              title: keywordsColorful(i.title, searchText),
               description: newDesc,
             };
           });
@@ -129,8 +135,13 @@ const GitEmoji: FunctionComponent<PluginProps> = (props, ref) => {
   // 复制 code 并退出
   const copyAndOut = (code: string) => {
     if (!code) return;
+
+    const current = data.find((i) => i.code === code);
+
+    const copyText = copyToChar ? code : current?.emoji ?? code;
+
     utools.hideMainWindow();
-    utools.copyText(code);
+    utools.copyText(addSpaceAfterCopy ? `${copyText} ` : copyText);
     utools.showNotification(`已复制 ${code}`);
     utools.outPlugin();
   };
@@ -190,8 +201,8 @@ const GitEmoji: FunctionComponent<PluginProps> = (props, ref) => {
     }, "搜索");
   };
 
-  const initFeature = (code: PluginFeaturesCode) => {
-    if (code === "gitmoji") {
+  const initFeature = (code: string) => {
+    if (["gitmoji"].includes(code)) {
       setSearchText("");
       setSubInput();
     }
@@ -207,7 +218,7 @@ const GitEmoji: FunctionComponent<PluginProps> = (props, ref) => {
 
   // ! 暴露内部方法解决utools只能调用内部生命周期一次的问题
   useImperativeHandle(ref, () => ({
-    initFeature(code: PluginFeaturesCode) {
+    initFeature(code: string) {
       initFeature(code);
     },
   }));
@@ -235,10 +246,7 @@ const GitEmoji: FunctionComponent<PluginProps> = (props, ref) => {
           }}
           onClick={(code) => {
             if (!utools) return;
-            utools.hideMainWindow();
-            utools.copyText(code);
-            utools.showNotification(`已复制 ${code}`);
-            utools.outPlugin();
+            copyAndOut(code);
           }}
         />
       ))}

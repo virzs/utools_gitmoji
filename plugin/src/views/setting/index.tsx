@@ -5,26 +5,36 @@
  * @Last Modified time: 2021-12-21 10:34:30
  */
 
-// ,
-//     {
-//       "code": "setting",
-//       "explain": "gitemoji 功能设置",
-//       "icon": "logo.png",
-//       "cmds": ["gs", "gitmoji-setting"]
-//     }
-
 import { FunctionComponent } from "preact";
-import { useState } from "preact/hooks";
+import { useState, useEffect, useMemo } from "preact/hooks";
 import Menu from "../../components/menu";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPalette } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faPalette } from "@fortawesome/free-solid-svg-icons";
+import Switch from "../../components/form/switch";
+import Feature from "./views/feature";
 
 const Setting: FunctionComponent = () => {
   const { Item } = Menu;
 
   const [value, setValue] = useState<string>("");
 
-  const dataSource = [{ icon: <FontAwesomeIcon icon={faPalette} />, label: "样式", value: "style" }];
+  const dataSource = [
+    { icon: <FontAwesomeIcon icon={faBars} />, label: "功能", value: "feature" },
+    // { icon: <FontAwesomeIcon icon={faPalette} />, label: "样式", value: "style" },
+  ];
+
+  const renderContent = useMemo(() => {
+    switch (value) {
+      case "feature":
+        return <Feature />;
+      default:
+        return <div></div>;
+    }
+  }, [value]);
+
+  useEffect(() => {
+    setValue(dataSource[0].value);
+  }, []);
 
   return (
     <div className="flex h-screen">
@@ -43,7 +53,7 @@ const Setting: FunctionComponent = () => {
           )}
         />
       </div>
-      <div className="flex-grow"></div>
+      <div className="flex-grow">{renderContent}</div>
     </div>
   );
 };

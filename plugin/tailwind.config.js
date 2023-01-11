@@ -8,6 +8,8 @@ module.exports = {
         "dark-active": "#515151",
         "dark-active-second": "#E5E7EB",
         "dark-hover": "#F3F4F6",
+        "switch-dark": "#adadad",
+        "switch-light": "#616161",
       },
       spacing: {
         50: "12.5rem",
