@@ -628,5 +628,32 @@
     "description_en": "Improve developer experience",
     "name": "technologist",
     "semver": null
+  },
+  {
+    "emoji": "💸",
+    "entity": "&#x1F4B8;",
+    "code": ":money_with_wings:",
+    "description_zh": "增加赞助或与钱有关的基础设施。",
+    "description_en": "Add sponsorships or money related infrastructure.",
+    "name": "money-with-wings",
+    "semver": null
+  },
+  {
+    "emoji": "🧵",
+    "entity": "&#x1F9F5;",
+    "code": ":thread:",
+    "description_zh": "添加或更新与多线程或并发性有关的代码。",
+    "description_en": "Add or update code related to multithreading or concurrency.",
+    "name": "thread",
+    "semver": null
+  },
+  {
+    "emoji": "🦺",
+    "entity": "&#x1F9BA;",
+    "code": ":safety_vest:",
+    "description_zh": "添加或更新与验证有关的代码。",
+    "description_en": "Add or update code related to validation.",
+    "name": "safety-vest",
+    "semver": null
   }
 ]
