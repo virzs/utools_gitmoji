@@ -19,31 +19,36 @@ export interface PluginProps {
 export function App() {
   const { utools } = window;
   let featureGitMoji = useRef<{
-    initFeature: (code: string) => void;
+    initFeature: () => void;
   }>();
 
-  const [code, setCode] = useState<string | null>(null); // 当前 插件code
   const [payload, setPayload] = useState<PluginFeaturesCode | null>(null); // 当前 进入时的关键词
   const [ready, setReady] = useState<boolean>(false); // 插件是否准备完成
+  const [enter, setEnter] = useState<boolean>(false);
 
   if (utools) {
     // ! 插件装载成功
     utools.onPluginReady(() => {
       setReady(true);
+      utools.setExpendHeight(10 * 48);
     });
     // ! 插件进入前台
     utools.onPluginEnter((action) => {
-      const { code, payload } = action;
-      setCode(code);
+      const { payload } = action;
       setPayload(payload);
+      setEnter(true);
+    });
+    // ! 插件隐藏
+    utools.onPluginOut(() => {
+      setEnter(false);
     });
   }
 
   useEffect(() => {
-    if (code && featureGitMoji.current) {
-      featureGitMoji.current.initFeature(code);
+    if (enter && featureGitMoji.current) {
+      featureGitMoji.current.initFeature();
     }
-  }, [code, featureGitMoji.current]);
+  }, [enter]);
 
   // ! 根据 code 渲染 features
   const RenderFeature = () => {
@@ -52,7 +57,6 @@ export function App() {
       case "git":
       case "commit":
         return <GitEmoji utools={utools} ready={ready} ref={featureGitMoji} />;
-      case "gs":
       case "gsetting":
         return <Setting />;
     }

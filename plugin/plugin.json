@@ -6,7 +6,7 @@
       "code": "gitmoji",
       "explain": "一个用于提交信息的表情符号指南",
       "icon": "logo.png",
-      "cmds": ["gitmoji", "git", "commit", "gs", "gsetting"]
+      "cmds": ["gitmoji", "git", "commit", "gsetting"]
     }
   ]
 }

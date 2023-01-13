@@ -2,7 +2,7 @@
  * @Author: vir virs98@outlook.com
  * @Date: 2021-12-02 15:47:19
  * @LastEditors: vir virs98@outlook.com
- * @LastEditTime: 2023-01-11 10:18:49
+ * @LastEditTime: 2023-01-13 11:34:07
  */
 
 import List from "../../components/list";
@@ -201,15 +201,14 @@ const GitEmoji: FunctionComponent<PluginProps> = (props, ref) => {
     }, "搜索");
   };
 
-  const initFeature = (code: string) => {
-    if (["gitmoji"].includes(code)) {
-      setSearchText("");
-      setSubInput();
-    }
+  const initFeature = () => {
+    setSearchText("");
+    setSubInput();
     utools.setExpendHeight(10 * 48);
     setOffset(0);
-    setSelect(showData[0].code);
-    setShowData(filterData.slice(0, 10));
+    const newData = filterData.slice(0, 10);
+    setSelect(newData[0].code);
+    setShowData(newData);
   };
 
   useEffect(() => {
@@ -218,8 +217,8 @@ const GitEmoji: FunctionComponent<PluginProps> = (props, ref) => {
 
   // ! 暴露内部方法解决utools只能调用内部生命周期一次的问题
   useImperativeHandle(ref, () => ({
-    initFeature(code: string) {
-      initFeature(code);
+    initFeature() {
+      initFeature();
     },
   }));
 
