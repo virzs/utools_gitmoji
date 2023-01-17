@@ -2,7 +2,7 @@
  * @Author: vir virs98@outlook.com
  * @Date: 2023-01-10 10:10:39
  * @LastEditors: vir virs98@outlook.com
- * @LastEditTime: 2023-01-10 17:14:29
+ * @LastEditTime: 2023-01-17 10:36:32
  */
 
 import classNames from "classnames";
@@ -36,15 +36,17 @@ const Switch: FC<SwitchProps> = (props) => {
       />
       <div
         className={classNames(
-          "border dark:border-switch-light border-switch-light border-solid w-10 m-2 p-[1px] rounded-full transition",
-          privValue ? "dark:bg-[#62abf5] dark:border-[#62abf5] bg-[#115ea3] border-[#115ea3]" : ""
+          "border border-solid w-10 m-2 p-[1px] rounded-full transition",
+          privValue
+            ? "dark:bg-[#62abf5] dark:border-[#62abf5] bg-[#115ea3] border-[#115ea3]"
+            : "dark:border-[#bdbdbd] border-switch-light"
         )}
       >
         <svg
           fill="currentColor"
           className={classNames(
-            "dark:text-switch-light text-switch-light text-lg transition transform",
-            privValue ? "translate-x-5" : ""
+            "text-lg transition transform",
+            privValue ? "translate-x-[18px] text-white dark:text-[#242424]" : "text-[#575757] dark:text-[#bdbdbd]"
           )}
           aria-hidden="true"
           width="1em"

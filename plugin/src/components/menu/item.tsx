@@ -24,7 +24,7 @@ const Item: FunctionComponent<ItemProps> = (props) => {
       className={classNames(
         "cursor-pointer flex gap-2 items-center px-2 py-1 transition rounded",
         "dark:hover:bg-dark dark:hover:text-white",
-        value === selected ? "bg-dark text-white" : "dark:text-black"
+        value === selected ? "bg-[#e7eaed] text-dark dark:bg-[#2b2c2d] dark:text-white" : "dark:text-black"
       )}
       onClick={onClick}
     >
