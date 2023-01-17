@@ -2,7 +2,7 @@
  * @Author: vir virs98@outlook.com
  * @Date: 2021-12-02 15:47:19
  * @LastEditors: vir virs98@outlook.com
- * @LastEditTime: 2023-01-13 11:34:07
+ * @LastEditTime: 2023-01-17 10:23:59
  */
 
 import List from "../../components/list";
@@ -13,7 +13,7 @@ import { forwardRef } from "preact/compat";
 import Pinyin from "pinyin-match";
 import Empty from "../../components/empty";
 import { FunctionComponent, RefObject } from "preact";
-import { PluginFeaturesCode, PluginProps } from "../../app";
+import { PluginProps } from "../../app";
 import defaultSetting from "../../config/setting";
 
 export interface SourceData {
@@ -40,7 +40,7 @@ const GitEmoji: FunctionComponent<PluginProps> = (props, ref) => {
   // 获取本地设置
   const setting = utools.dbStorage.getItem("setting") ?? defaultSetting;
   const { feature } = setting;
-  const { copyToChar = true, addSpaceAfterCopy = false } = feature;
+  const { copyToChar = true, addSpaceAfterCopy = false, autoPaste = false } = feature;
 
   // 替换模板
   const template = (val: any) => `<font class='text-red-500 font-semibold'>${val}</font>`;
@@ -143,6 +143,17 @@ const GitEmoji: FunctionComponent<PluginProps> = (props, ref) => {
     utools.hideMainWindow();
     utools.copyText(addSpaceAfterCopy ? `${copyText} ` : copyText);
     utools.showNotification(`已复制 ${code}`);
+    // ? 是否自动粘贴
+    if (autoPaste) {
+      if (utools.isLinux() || utools.isWindows()) {
+        // windows linux 模拟粘贴
+        utools.simulateKeyboardTap("v", "ctrl");
+      }
+      if (utools.isMacOs()) {
+        // macos 模拟粘贴
+        utools.simulateKeyboardTap("v", "command");
+      }
+    }
     utools.outPlugin();
   };
 
