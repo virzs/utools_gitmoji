@@ -9,9 +9,11 @@ import { FunctionComponent } from "preact";
 import { useState, useEffect, useMemo } from "preact/hooks";
 import Menu from "../../components/menu";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faPalette } from "@fortawesome/free-solid-svg-icons";
-import Switch from "../../components/form/switch";
+import { faBars, faInfo, faSmile } from "@fortawesome/free-solid-svg-icons";
 import Feature from "./views/feature";
+import DefaultEmoji from "./views/defaultEmoji";
+import About from "./views/about";
+import MyEmoji from "./views/myEmoji";
 
 const Setting: FunctionComponent = () => {
   const { Item } = Menu;
@@ -20,13 +22,21 @@ const Setting: FunctionComponent = () => {
 
   const dataSource = [
     { icon: <FontAwesomeIcon icon={faBars} />, label: "功能", value: "feature" },
-    // { icon: <FontAwesomeIcon icon={faPalette} />, label: "样式", value: "style" },
+    { icon: <FontAwesomeIcon icon={faSmile} />, label: "默认表情", value: "default_emoji" },
+    { icon: <FontAwesomeIcon icon={faSmile} />, label: "我的表情", value: "my_emoji" },
+    { icon: <FontAwesomeIcon icon={faInfo} />, label: "关于", value: "about" },
   ];
 
   const renderContent = useMemo(() => {
     switch (value) {
       case "feature":
         return <Feature />;
+      case "default_emoji":
+        return <DefaultEmoji />;
+      case "my_emoji":
+        return <MyEmoji />;
+      case "about":
+        return <About />;
       default:
         return <div></div>;
     }

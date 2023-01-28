@@ -2,7 +2,7 @@
  * @Author: vir virs98@outlook.com
  * @Date: 2021-12-02 15:47:19
  * @LastEditors: vir virs98@outlook.com
- * @LastEditTime: 2023-01-17 10:23:59
+ * @LastEditTime: 2023-01-28 16:28:45
  */
 
 import List from "../../components/list";
@@ -42,6 +42,9 @@ const GitEmoji: FunctionComponent<PluginProps> = (props, ref) => {
   const { feature } = setting;
   const { copyToChar = true, addSpaceAfterCopy = false, autoPaste = false } = feature;
 
+  // 获取本地隐藏的表情
+  const hideEmoji: string[] = utools.dbStorage.getItem("hide_emoji") ?? [];
+
   // 替换模板
   const template = (val: any) => `<font class='text-red-500 font-semibold'>${val}</font>`;
 
@@ -60,11 +63,13 @@ const GitEmoji: FunctionComponent<PluginProps> = (props, ref) => {
 
   // 格式化数据
   const sourceData: SourceData[] = useMemo(() => {
-    return data.map((i) => ({
-      title: `${i.emoji} ${i.code}`,
-      description: `${i.description_zh} (${i.description_en})`,
-      code: i.code,
-    }));
+    return data
+      .filter((i) => !hideEmoji.includes(i.code))
+      .map((i) => ({
+        title: `${i.emoji} ${i.code}`,
+        description: `${i.description_zh} (${i.description_en})`,
+        code: i.code,
+      }));
   }, [data]);
 
   // 根据关键词过滤
@@ -123,13 +128,11 @@ const GitEmoji: FunctionComponent<PluginProps> = (props, ref) => {
         !newData.find((i) => i.code === nextActive.code) && newData.push(nextActive);
         newData = newData.slice(-10);
       }
-      setShowData(newData);
-      if (utools && ready) utools.setExpendHeight(newData.length > 0 ? newData.length * 48 : 48);
     } else {
-      const newData = filterData.slice(0, 10);
-      setShowData(newData);
-      if (utools && ready) utools.setExpendHeight(newData.length * 48);
+      newData = filterData.slice(0, 10);
     }
+    setShowData(newData);
+    if (utools && ready) utools.setExpendHeight(newData.length > 0 ? newData.length * 48 : 48);
   };
 
   // 复制 code 并退出
@@ -215,7 +218,7 @@ const GitEmoji: FunctionComponent<PluginProps> = (props, ref) => {
   const initFeature = () => {
     setSearchText("");
     setSubInput();
-    utools.setExpendHeight(10 * 48);
+    utools.setExpendHeight((filterData.length > 9 ? 10 : filterData.length) * 48);
     setOffset(0);
     const newData = filterData.slice(0, 10);
     setSelect(newData[0].code);
