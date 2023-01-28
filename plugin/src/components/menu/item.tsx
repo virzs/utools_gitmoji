@@ -22,14 +22,16 @@ const Item: FunctionComponent<ItemProps> = (props) => {
   return (
     <div
       className={classNames(
-        "cursor-pointer flex gap-2 items-center px-2 py-1 transition rounded",
-        "dark:hover:bg-dark dark:hover:text-white",
-        value === selected ? "bg-[#e7eaed] text-dark dark:bg-[#2b2c2d] dark:text-white" : "dark:text-black"
+        "cursor-pointer flex gap-2 items-center px-2 py-1 transition-all rounded text-sm",
+        "dark:hover:bg-dark dark:hover:text-[#90caf9]",
+        value === selected
+          ? "bg-[#e7eaed] text-dark dark:bg-[#2b2c2d] dark:text-[#90caf9]"
+          : "dark:text-black text-[#ebebeb] dark:bg-[#616161]"
       )}
       onClick={onClick}
     >
-      {icon}
-      {label}
+      <div className="w-4 h-6 flex justify-center items-center">{icon}</div>
+      <span>{label}</span>
     </div>
   );
 };
