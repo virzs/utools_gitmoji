@@ -5,8 +5,11 @@
  * @Last Modified time: 2021-10-20 18:00:05
  */
 
+import { css, cx } from "@emotion/css";
 import classNames from "classnames";
 import { FunctionComponent } from "preact";
+import useTheme from "../hooks/theme";
+import SvgIcon from "./svgIcon";
 
 export interface ItemProps {
   index: number;
@@ -19,6 +22,7 @@ export interface ItemProps {
 }
 
 const Item: FunctionComponent<ItemProps> = ({ index, value, code, title, description, onSelect, onClick }) => {
+  const d = useTheme();
   return (
     <li
       className={classNames(
@@ -42,7 +46,29 @@ const Item: FunctionComponent<ItemProps> = ({ index, value, code, title, descrip
           </pre>
         </div>
       </div>
-      <div>ALT + {index + 1 === 10 ? 0 : index + 1}</div>
+      <div className="flex items-center align-text-top">
+        {utools.isMacOs() ? (
+          <SvgIcon
+            className={cx(
+              "w-8 h-8",
+              css`
+                .st0,
+                g,
+                path {
+                  fill: #fff;
+                  stroke: #fff;
+                  color: #fff;
+                }
+              `
+            )}
+            name="command"
+            color="#fff"
+          />
+        ) : (
+          "ALT"
+        )}
+        + {index + 1 === 10 ? 0 : index + 1}
+      </div>
     </li>
   );
 };
