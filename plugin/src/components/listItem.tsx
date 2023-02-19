@@ -6,10 +6,27 @@
  */
 
 import { css, cx } from "@emotion/css";
+import {
+  fa0,
+  fa1,
+  fa2,
+  fa3,
+  fa4,
+  fa5,
+  fa6,
+  fa7,
+  fa8,
+  fa9,
+  faA,
+  faL,
+  faPlus,
+  faT,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames";
 import { FunctionComponent } from "preact";
 import useTheme from "../hooks/theme";
-import SvgIcon from "./svgIcon";
+import CommandIcon from "./icon/command";
 
 export interface ItemProps {
   index: number;
@@ -23,6 +40,32 @@ export interface ItemProps {
 
 const Item: FunctionComponent<ItemProps> = ({ index, value, code, title, description, onSelect, onClick }) => {
   const d = useTheme();
+
+  const getNumber = (num: number) => {
+    switch (num) {
+      case 0:
+        return <FontAwesomeIcon icon={fa0} />;
+      case 1:
+        return <FontAwesomeIcon icon={fa1} />;
+      case 2:
+        return <FontAwesomeIcon icon={fa2} />;
+      case 3:
+        return <FontAwesomeIcon icon={fa3} />;
+      case 4:
+        return <FontAwesomeIcon icon={fa4} />;
+      case 5:
+        return <FontAwesomeIcon icon={fa5} />;
+      case 6:
+        return <FontAwesomeIcon icon={fa6} />;
+      case 7:
+        return <FontAwesomeIcon icon={fa7} />;
+      case 8:
+        return <FontAwesomeIcon icon={fa8} />;
+      case 9:
+        return <FontAwesomeIcon icon={fa9} />;
+    }
+  };
+
   return (
     <li
       className={classNames(
@@ -46,28 +89,18 @@ const Item: FunctionComponent<ItemProps> = ({ index, value, code, title, descrip
           </pre>
         </div>
       </div>
-      <div className="flex items-center align-text-top">
+      <div className="flex items-center gap-2">
         {utools.isMacOs() ? (
-          <SvgIcon
-            className={cx(
-              "w-8 h-8",
-              css`
-                .st0,
-                g,
-                path {
-                  fill: #fff;
-                  stroke: #fff;
-                  color: #fff;
-                }
-              `
-            )}
-            name="command"
-            color="#fff"
-          />
+          <CommandIcon color={d ? "#fff" : "#333"} />
         ) : (
-          "ALT"
+          <div>
+            <FontAwesomeIcon icon={faA} />
+            <FontAwesomeIcon icon={faL} />
+            <FontAwesomeIcon icon={faT} />
+          </div>
         )}
-        + {index + 1 === 10 ? 0 : index + 1}
+        <FontAwesomeIcon icon={faPlus} />
+        {index + 1 === 10 ? getNumber(0) : getNumber(index + 1)}
       </div>
     </li>
   );

@@ -8,6 +8,5 @@ import { render } from "preact";
 import { App } from "./app";
 import "./index.css";
 import "tailwindcss/tailwind.css";
-import "virtual:svg-icons-register";
 
 render(<App />, document.getElementById("app")!);

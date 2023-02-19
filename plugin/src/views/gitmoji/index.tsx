@@ -162,7 +162,7 @@ const GitEmoji: FunctionComponent<PluginProps> = (props, ref) => {
 
   const KeyEventListener = (e: KeyboardEvent) => {
     e.preventDefault();
-    const { code, altKey, key, shiftKey } = e;
+    const { code, altKey, key, shiftKey, metaKey } = e;
     switch (code) {
       // ! 按 tab 切换到下一个 shift + tab 切换到上一个
       // ! 按 箭头 上 / 下 切换
@@ -193,7 +193,7 @@ const GitEmoji: FunctionComponent<PluginProps> = (props, ref) => {
       case "Digit8":
       case "Digit9":
       case "Digit0":
-        if (!altKey) return;
+        if (!altKey && !metaKey) return;
         const privKey = Number(key) === 0 ? 9 : Number(key) - 1;
         const altSelect = showData[privKey];
         if (!altSelect) return;
