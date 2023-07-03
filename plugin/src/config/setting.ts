@@ -11,6 +11,7 @@ const defaultSetting = {
     copyToChar: true,
     addSpaceAfterCopy: false,
     autoPaste: false,
+    notification: false,
   },
 };
 

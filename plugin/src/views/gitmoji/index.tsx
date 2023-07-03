@@ -8,7 +8,14 @@
 import List from "../../components/list";
 import Item from "../../components/listItem";
 import data from "../../data.json";
-import { useState, useEffect, useMemo, useRef, Ref, useImperativeHandle } from "preact/hooks";
+import {
+  useState,
+  useEffect,
+  useMemo,
+  useRef,
+  Ref,
+  useImperativeHandle,
+} from "preact/hooks";
 import { forwardRef } from "preact/compat";
 import Pinyin from "pinyin-match";
 import Empty from "../../components/empty";
@@ -40,13 +47,19 @@ const GitEmoji: FunctionComponent<PluginProps> = (props, ref) => {
   // 获取本地设置
   const setting = utools.dbStorage.getItem("setting") ?? defaultSetting;
   const { feature } = setting;
-  const { copyToChar = true, addSpaceAfterCopy = false, autoPaste = false } = feature;
+  const {
+    copyToChar = true,
+    addSpaceAfterCopy = false,
+    autoPaste = false,
+    notification = false,
+  } = feature;
 
   // 获取本地隐藏的表情
   const hideEmoji: string[] = utools.dbStorage.getItem("hide_emoji") ?? [];
 
   // 替换模板
-  const template = (val: any) => `<font class='text-red-500 font-semibold'>${val}</font>`;
+  const template = (val: any) =>
+    `<font class='text-red-500 font-semibold'>${val}</font>`;
 
   // 替换拼音匹配内容
   const replaceStr = (str: string, start: number, stop: number) => {
@@ -81,7 +94,8 @@ const GitEmoji: FunctionComponent<PluginProps> = (props, ref) => {
             const lowSW = searchText.toLocaleLowerCase();
             // ! 匹配拼音、中英文
             const pinyinMatch = Pinyin.match(i.description, searchText);
-            const findDesc = i.description.toLocaleLowerCase().indexOf(lowSW) !== -1;
+            const findDesc =
+              i.description.toLocaleLowerCase().indexOf(lowSW) !== -1;
             const findName = i.code.toLocaleLowerCase().indexOf(lowSW) !== -1;
 
             return findName || findDesc || pinyinMatch;
@@ -92,7 +106,11 @@ const GitEmoji: FunctionComponent<PluginProps> = (props, ref) => {
             let newDesc = "";
 
             if (typeof pinyinMatch === "object" && pinyinMatch.length === 2) {
-              newDesc = replaceStr(i.description, pinyinMatch[0], pinyinMatch[1]);
+              newDesc = replaceStr(
+                i.description,
+                pinyinMatch[0],
+                pinyinMatch[1]
+              );
             } else {
               newDesc = keywordsColorful(i.description, searchText);
             }
@@ -117,22 +135,31 @@ const GitEmoji: FunctionComponent<PluginProps> = (props, ref) => {
       // 获取当前选中项实际下标
       const realActiveIndex = filterData.findIndex((i) => i.code === select);
       if (offset == -1) {
-        const nextActive = realActiveIndex === 0 ? filterData[filterData.length - 1] : filterData[realActiveIndex - 1];
+        const nextActive =
+          realActiveIndex === 0
+            ? filterData[filterData.length - 1]
+            : filterData[realActiveIndex - 1];
         setSelect(nextActive.code);
-        !newData.find((i) => i.code === nextActive.code) && newData.unshift(nextActive);
+        !newData.find((i) => i.code === nextActive.code) &&
+          newData.unshift(nextActive);
         newData = newData.slice(0, 10);
       }
       if (offset === 1) {
-        const nextActive = realActiveIndex === filterData.length - 1 ? filterData[0] : filterData[realActiveIndex + 1];
+        const nextActive =
+          realActiveIndex === filterData.length - 1
+            ? filterData[0]
+            : filterData[realActiveIndex + 1];
         setSelect(nextActive.code);
-        !newData.find((i) => i.code === nextActive.code) && newData.push(nextActive);
+        !newData.find((i) => i.code === nextActive.code) &&
+          newData.push(nextActive);
         newData = newData.slice(-10);
       }
     } else {
       newData = filterData.slice(0, 10);
     }
     setShowData(newData);
-    if (utools && ready) utools.setExpendHeight(newData.length > 0 ? newData.length * 48 : 48);
+    if (utools && ready)
+      utools.setExpendHeight(newData.length > 0 ? newData.length * 48 : 48);
   };
 
   // 复制 code 并退出
@@ -145,7 +172,7 @@ const GitEmoji: FunctionComponent<PluginProps> = (props, ref) => {
 
     utools.hideMainWindow();
     utools.copyText(addSpaceAfterCopy ? `${copyText} ` : copyText);
-    utools.showNotification(`已复制 ${code}`);
+    notification && utools.showNotification(`已复制 ${code}`);
     // ? 是否自动粘贴
     if (autoPaste) {
       if (utools.isLinux() || utools.isWindows()) {
@@ -218,7 +245,9 @@ const GitEmoji: FunctionComponent<PluginProps> = (props, ref) => {
   const initFeature = () => {
     setSearchText("");
     setSubInput();
-    utools.setExpendHeight((filterData.length > 9 ? 10 : filterData.length) * 48);
+    utools.setExpendHeight(
+      (filterData.length > 9 ? 10 : filterData.length) * 48
+    );
     setOffset(0);
     const newData = filterData.slice(0, 10);
     setSelect(newData[0].code);
