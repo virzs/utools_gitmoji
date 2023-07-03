@@ -12,12 +12,12 @@
     "@fortawesome/fontawesome-svg-core": "^6.3.0",
     "@fortawesome/free-solid-svg-icons": "^6.3.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
-    "autoprefixer": "^10.3.7",
+    "autoprefixer": "^10.4.14",
     "classnames": "^2.3.1",
     "pinyin-match": "^1.2.2",
-    "postcss": "^8.3.9",
+    "postcss": "^8.4.24",
     "preact": "^10.11.3",
-    "tailwindcss": "^3.2.4"
+    "tailwindcss": "^3.3.2"
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.0.0",
