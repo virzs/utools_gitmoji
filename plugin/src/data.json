@@ -199,7 +199,7 @@
   },
   {
     "emoji": "♻️",
-    "entity": "&#x2672;",
+    "entity": "&#x267b;",
     "code": ":recycle:",
     "description_zh": "重构代码。",
     "description_en": "Refactor code.",
@@ -469,7 +469,7 @@
   },
   {
     "emoji": "📸",
-    "entity": "&#x2697;",
+    "entity": "&#128248;",
     "code": ":camera_flash:",
     "description_zh": "添加或更新快照。",
     "description_en": "Add or update snapshots.",
@@ -478,7 +478,7 @@
   },
   {
     "emoji": "⚗️",
-    "entity": "&#128248;",
+    "entity": "&#x2697;",
     "code": ":alembic:",
     "description_zh": "执行实验。",
     "description_en": "Perform experiments.",
@@ -571,7 +571,7 @@
     "entity": "&#x1F9D0;",
     "code": ":monocle_face:",
     "description_zh": "数据探索/检查。",
-    "description_en": "Data exploration / inspection.",
+    "description_en": "Data exploration/inspection.",
     "name": "monocle-face",
     "semver": null
   },
@@ -654,6 +654,15 @@
     "description_zh": "添加或更新与验证相关的代码。",
     "description_en": "Add or update code related to validation.",
     "name": "safety-vest",
+    "semver": null
+  },
+  {
+    "emoji": "✈️",
+    "entity": "&#x2708;",
+    "code": ":airplane:",
+    "description_zh": "改善离线支持。",
+    "description_en": "Improve offline support.",
+    "name": "airplane",
     "semver": null
   }
 ]
