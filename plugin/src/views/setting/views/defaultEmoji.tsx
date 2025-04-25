@@ -1,10 +1,3 @@
-/*
- * @Author: vir virs98@outlook.com
- * @Date: 2023-01-28 10:56:32
- * @LastEditors: vir virs98@outlook.com
- * @LastEditTime: 2023-01-28 16:20:29
- */
-
 import data from "../../../data.json";
 import BaseCard from "../../../components/card/base";
 import SettingContentLayout from "../../../components/layout/settingContent";
@@ -29,7 +22,8 @@ interface EmojiItemProps {
 
 const EmojiItem: FC<EmojiItemProps> = (props) => {
   const { dataSource, onClick, value = [] } = props;
-  const { name, emoji, code, entity, description_en, description_zh } = dataSource;
+  const { name, emoji, code, entity, description_en, description_zh } =
+    dataSource;
 
   return (
     <li className="relative">
@@ -122,7 +116,12 @@ const DefaultEmoji = () => {
         {init && hideEmoji.length > 0 ? (
           <ul>
             {hideEmoji.map((i, j) => (
-              <EmojiItem dataSource={i} key={j} onClick={onChange} value={selected} />
+              <EmojiItem
+                dataSource={i}
+                key={j}
+                onClick={onChange}
+                value={selected}
+              />
             ))}
           </ul>
         ) : (
@@ -134,7 +133,12 @@ const DefaultEmoji = () => {
         {init && showEmoji.length > 0 ? (
           <ul>
             {showEmoji.map((i, j) => (
-              <EmojiItem dataSource={i} key={j} onClick={onChange} value={selected} />
+              <EmojiItem
+                dataSource={i}
+                key={j}
+                onClick={onChange}
+                value={selected}
+              />
             ))}
           </ul>
         ) : (

@@ -1,10 +1,3 @@
-/*
- * @Author: vir virs98@outlook.com
- * @Date: 2023-01-28 14:34:07
- * @LastEditors: vir virs98@outlook.com
- * @LastEditTime: 2023-01-28 14:58:32
- */
-
 import { css } from "@emotion/css";
 import { faCopy } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

@@ -1,10 +1,3 @@
-/*
- * @Author: vir virs98@outlook.com
- * @Date: 2023-01-10 14:02:38
- * @LastEditors: vir virs98@outlook.com
- * @LastEditTime: 2023-01-28 13:45:48
- */
-
 import { FC } from "preact/compat";
 
 interface FormItemProps {

@@ -1,10 +1,3 @@
-/*
- * @Author: vir virs98@outlook.com
- * @Date: 2023-01-10 10:10:39
- * @LastEditors: vir virs98@outlook.com
- * @LastEditTime: 2023-01-17 10:36:32
- */
-
 import classNames from "classnames";
 import { FC } from "preact/compat";
 import { useEffect, useState } from "preact/hooks";
@@ -46,7 +39,9 @@ const Switch: FC<SwitchProps> = (props) => {
           fill="currentColor"
           className={classNames(
             "text-lg transition transform",
-            privValue ? "translate-x-[18px] text-white dark:text-[#242424]" : "text-[#575757] dark:text-[#bdbdbd]"
+            privValue
+              ? "translate-x-[18px] text-white dark:text-[#242424]"
+              : "text-[#575757] dark:text-[#bdbdbd]"
           )}
           aria-hidden="true"
           width="1em"

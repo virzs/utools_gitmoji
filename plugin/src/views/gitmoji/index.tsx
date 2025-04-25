@@ -1,10 +1,3 @@
-/*
- * @Author: vir virs98@outlook.com
- * @Date: 2021-12-02 15:47:19
- * @LastEditors: vir virs98@outlook.com
- * @LastEditTime: 2023-01-28 16:28:45
- */
-
 import List from "../../components/list";
 import Item from "../../components/listItem";
 import data from "../../data.json";
