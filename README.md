@@ -40,7 +40,7 @@ utools 插件应用市场搜索 `gitmoji`
 ``` bash
 > cd plugin
 
-> yarn build:no_check
+> yarn build:not_check
 ```
 
 ## 版权说明
