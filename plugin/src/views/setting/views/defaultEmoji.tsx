@@ -30,7 +30,7 @@ const EmojiItem: FC<EmojiItemProps> = (props) => {
       <BaseCard title={dataSource.emoji}>
         <button
           className={cx(
-            "absolute top-2 right-2 rounded px-2 py-1 text-sm transition-all",
+            "absolute top-2 right-2 rounded px-2 py-1 text-sm transition-all text-white",
             value.includes(code) ? "bg-green-500" : "bg-red-500"
           )}
           onClick={() => onClick(code)}

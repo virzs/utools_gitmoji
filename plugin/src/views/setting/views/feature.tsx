@@ -1,10 +1,3 @@
-/*
- * @Author: vir virs98@outlook.com
- * @Date: 2023-01-10 14:04:03
- * @LastEditors: vir virs98@outlook.com
- * @LastEditTime: 2023-01-28 13:53:14
- */
-
 import { useEffect, useState } from "preact/hooks";
 import BaseCard from "../../../components/card/base";
 import FormItem from "../../../components/form/item";

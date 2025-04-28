@@ -16,7 +16,7 @@ const Menu: FunctionComponent<MenuProps> = (props) => {
   const { dataSource = [], builder } = props;
 
   return (
-    <div className="dark:bg-dark-active w-full h-full p-1.5 gap-1 flex flex-col">
+    <div className="dark:bg-dark-active bg-white w-full h-full p-1.5 gap-1 flex flex-col border-r border-[#e9e9e9] dark:border-[#313131]">
       {dataSource.map((item, index) => builder(item, index))}
     </div>
   );

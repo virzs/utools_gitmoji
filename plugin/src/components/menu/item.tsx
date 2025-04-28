@@ -22,11 +22,11 @@ const Item: FunctionComponent<ItemProps> = (props) => {
   return (
     <div
       className={classNames(
-        "cursor-pointer flex gap-2 items-center px-2 py-1 transition-all rounded text-sm",
+        "cursor-pointer flex gap-2 items-center px-2 py-2 transition-all rounded text-sm",
         "dark:hover:bg-dark dark:hover:text-[#90caf9]",
         value === selected
-          ? "bg-[#e7eaed] text-dark dark:bg-[#2b2c2d] dark:text-[#90caf9]"
-          : "dark:text-black text-[#ebebeb] dark:bg-[#616161]"
+          ? "bg-[#ebebeb] text-dark dark:bg-[#383838] dark:text-white"
+          : "text-[#292929] dark:text-[#ececec]"
       )}
       onClick={onClick}
     >

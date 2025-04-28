@@ -1,10 +1,3 @@
-/*
- * @Author: Vir
- * @Date: 2021-12-02 17:02:52
- * @Last Modified by: Vir
- * @Last Modified time: 2021-12-21 10:34:30
- */
-
 import { FunctionComponent } from "preact";
 import { useState, useEffect, useMemo } from "preact/hooks";
 import Menu from "../../components/menu";
@@ -21,9 +14,17 @@ const Setting: FunctionComponent = () => {
   const [value, setValue] = useState<string>("");
 
   const dataSource = [
-    { icon: <FontAwesomeIcon icon={faBars} />, label: "功能", value: "feature" },
-    { icon: <FontAwesomeIcon icon={faSmile} />, label: "默认表情", value: "default_emoji" },
-    { icon: <FontAwesomeIcon icon={faSmile} />, label: "我的表情", value: "my_emoji" },
+    {
+      icon: <FontAwesomeIcon icon={faBars} />,
+      label: "功能",
+      value: "feature",
+    },
+    {
+      icon: <FontAwesomeIcon icon={faSmile} />,
+      label: "默认表情",
+      value: "default_emoji",
+    },
+    // { icon: <FontAwesomeIcon icon={faSmile} />, label: "我的表情", value: "my_emoji" },
     { icon: <FontAwesomeIcon icon={faInfo} />, label: "关于", value: "about" },
   ];
 
@@ -47,7 +48,7 @@ const Setting: FunctionComponent = () => {
   }, []);
 
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen border-t border-[#e9e9e9] dark:border-[#313131] overflow-hidden">
       <div className="flex h-screen w-50">
         <Menu
           dataSource={dataSource}
